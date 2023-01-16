@@ -2,7 +2,7 @@ import { styled } from "@fivem-shop/react";
 import { responsived } from "@src/styles/global.css";
 import { motion } from "framer-motion";
 
-const homeResponsived = {
+const mediaResposives = {
   "@media (max-width: 992px)": {
     flexDirection: "column-reverse",
   },
@@ -79,6 +79,6 @@ export const Main = styled(motion.main, {
     color: "white",
   },
 
-  ...homeResponsived,
+  ...mediaResposives,
   ...responsived,
 });

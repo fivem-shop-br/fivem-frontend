@@ -6,6 +6,7 @@ export const globalStyles = globalCss({
     padding: 0,
     boxSizing: "border-box",
     fontFamily: "$default",
+    "scroll-behavior": "smooth",
   },
 
   body: {
@@ -24,6 +25,7 @@ export const globalStyles = globalCss({
       borderRadius: "2rem",
       background: "$gray-500",
     },
+    "-webkit-font-smoothing": "antialiased",
   },
 
   "button, input": {
