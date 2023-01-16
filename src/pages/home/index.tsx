@@ -8,6 +8,7 @@ import {
   animateProvider,
   animateChildren,
 } from "@src/styles/animate.css";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -20,11 +21,11 @@ export default function Home() {
           vamos lá!
         </animate.p>
         <animate.div {...animateChildren}>
-          <Button mode="primary" size="medium">
-            PLANOS
+          <Button mode="primary" size="medium" asChild>
+            <a href="#">PLANOS</a>
           </Button>
           <Button mode="secondary" size="medium">
-            REGISTRAR CONTA
+            <Link href="/">REGISTRAR CONTA</Link>
           </Button>
         </animate.div>
       </animate.section>

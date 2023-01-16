@@ -74,6 +74,11 @@ export const Main = styled(motion.main, {
     gap: "26px",
   },
 
+  a: {
+    textDecoration: "none",
+    color: "white",
+  },
+
   ...homeResponsived,
   ...responsived,
 });

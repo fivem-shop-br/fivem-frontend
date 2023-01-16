@@ -35,8 +35,7 @@ export const Container = styled(motion.header, {
     justifyContent: "center",
     gap: "35px",
 
-    a: {
-      textDecoration: "none",
+    "> a": {
       color: "white",
       fontSize: "1rem",
       fontWeight: 500,
@@ -45,6 +44,10 @@ export const Container = styled(motion.header, {
       "&:hover": {
         color: "$hover-link",
       },
+    },
+
+    a: {
+      textDecoration: "none",
     },
 
     div: {
