@@ -18,7 +18,7 @@ export function Header() {
         </Link>
         <nav>
           <a href="#">RECURSOS</a>
-          <a href="#">STATUS</a>
+          <a href="#band">STATUS</a>
           <a href="#">SOBRE</a>
           <div>
             <Button mode="primary" asChild>

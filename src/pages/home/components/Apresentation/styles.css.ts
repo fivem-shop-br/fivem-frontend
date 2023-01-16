@@ -38,8 +38,8 @@ const mediaResposives = {
 };
 
 export const Main = styled(motion.main, {
-  minHeight: "105vh",
-  padding: "calc(135px + 4rem) 0px",
+  minHeight: "86vh",
+  paddingTop: "calc(135px + 4rem)",
 
   display: "flex",
   alignItems: "center",

@@ -1,13 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import Apresentation from "@src/source/apresentation.png";
-import { animate, animateProvider, animateChildren } from "@src/utils/animate";
+import { animate, animateChildren } from "@src/utils/animate";
 import { Main } from "./styles.css";
 import { Button } from "@fivem-shop/react";
 
 export function Apresation() {
   return (
-    <Main {...animateProvider}>
+    <Main>
       <animate.section>
         <animate.h1 {...animateChildren}>Faça sua Loja</animate.h1>
         <animate.span {...animateChildren}>para Fivem</animate.span>
