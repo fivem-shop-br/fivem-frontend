@@ -1,11 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Apresentation from "@src/source/apresentation.png";
-import {
-  animate,
-  animateProvider,
-  animateChildren,
-} from "@src/styles/animate.css";
+import { animate, animateProvider, animateChildren } from "@src/utils/animate";
 import { Main } from "./styles.css";
 import { Button } from "@fivem-shop/react";
 
