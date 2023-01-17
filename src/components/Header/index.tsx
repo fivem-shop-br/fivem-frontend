@@ -17,18 +17,23 @@ export function Header() {
           <Image src={Logo} alt="Logo" />
         </Link>
         <nav>
-          <a href="">RECURSOS</a>
-          <a href="">STATUS</a>
-          <a href="">SOBRE</a>
+          <a href="#">RECURSOS</a>
+          <a href="#band">STATUS</a>
+          <a href="#">SOBRE</a>
           <div>
-            <Button mode="primary">PLANOS</Button>
+            <Button mode="primary" asChild>
+              <a href="#">PLANOS</a>
+            </Button>
             <Button
               mode="secondary"
               hoverColor="$gray-500"
               backgroundColor="$gray-600"
+              asChild
             >
-              <User weight="bold" />
-              LOGIN
+              <Link href="/">
+                <User weight="bold" />
+                LOGIN
+              </Link>
             </Button>
           </div>
         </nav>
