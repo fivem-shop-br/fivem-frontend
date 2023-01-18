@@ -32,6 +32,19 @@ export const globalStyles = globalCss({
     outline: "none",
     border: 0,
   },
+
+  "#nprogress .spinner-icon": {
+    borderTopColor: "$blue-700",
+    borderLeftColor: "$blue-700",
+  },
+
+  "#nprogress .bar": {
+    background: "$blue-700",
+  },
+
+  "#nprogress .peg": {
+    boxShadow: "0 0 10px $blue-700, 0 0 5px $blue-700",
+  },
 });
 
 export const responsived = {
