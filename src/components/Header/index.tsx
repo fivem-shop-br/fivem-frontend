@@ -1,11 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@fivem-shop/react";
-import { Container } from "./styles.css";
-
+import Image from "next/image";
 import Logo from "@src/source/logo.svg";
+import { Container } from "./styles.css";
+import { NavBar } from "./components/NavBar";
 import { useScroll } from "@src/hooks/useScroll";
-import { User } from "phosphor-react";
 
 export function Header() {
   const { isScrolled } = useScroll();
@@ -16,27 +14,7 @@ export function Header() {
         <Link href="/">
           <Image src={Logo} alt="Logo" />
         </Link>
-        <nav>
-          <a href="#">RECURSOS</a>
-          <a href="#band">STATUS</a>
-          <a href="#">SOBRE</a>
-          <div>
-            <Button mode="primary" asChild>
-              <a href="#">PLANOS</a>
-            </Button>
-            <Button
-              mode="secondary"
-              hoverColor="$gray-500"
-              backgroundColor="$gray-600"
-              asChild
-            >
-              <Link href="/">
-                <User weight="bold" />
-                LOGIN
-              </Link>
-            </Button>
-          </div>
-        </nav>
+        <NavBar />
       </section>
     </Container>
   );
