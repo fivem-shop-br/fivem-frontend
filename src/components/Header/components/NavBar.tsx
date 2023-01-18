@@ -3,7 +3,8 @@ import { Avatar } from "./Avatar";
 import { User } from "phosphor-react";
 import { Button } from "@fivem-shop/react";
 import { useAuth } from "@src/hooks/useAuth";
-import Skeleton from "react-loading-skeleton";
+import { Skeleton } from "@src/components/Skeleton";
+import SkeletonProvider from "react-loading-skeleton";
 
 const navLinks = [
   {
@@ -27,31 +28,28 @@ export function NavBar() {
     <nav>
       <NavLinkSkeleton loading={loading} />
       <div>
-        {loading ? (
-          <Skeleton width={138} height={44} />
-        ) : (
+        <Skeleton width={138} height={44} state={!loading}>
           <Button mode="primary" asChild>
             <a href="#">PLANOS</a>
           </Button>
-        )}
+        </Skeleton>
 
-        {loading ? (
-          <Skeleton width={138} height={44} />
-        ) : user ? (
-          <Avatar />
-        ) : (
-          <Button
-            mode="secondary"
-            hoverColor="$gray-500"
-            backgroundColor="$gray-600"
-            asChild
-          >
-            <Link href="/auth/login">
-              <User weight="bold" />
-              LOGIN
-            </Link>
-          </Button>
-        )}
+        <Skeleton width={138} height={44} state={!loading}>
+          {user && <Avatar />}
+          {!user && (
+            <Button
+              mode="secondary"
+              hoverColor="$gray-500"
+              backgroundColor="$gray-600"
+              asChild
+            >
+              <Link href="/auth/login">
+                <User weight="bold" />
+                LOGIN
+              </Link>
+            </Button>
+          )}
+        </Skeleton>
       </div>
     </nav>
   );
@@ -66,7 +64,7 @@ function NavLinkSkeleton({ loading }: propsNavLinkSkeleton) {
     <>
       {navLinks.map((index, key) => (
         <a href={index.href} key={key}>
-          {loading ? <Skeleton width={55} /> : index.name}
+          {loading ? <SkeletonProvider width={55} /> : index.name}
         </a>
       ))}
     </>
