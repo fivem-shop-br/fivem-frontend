@@ -20,7 +20,7 @@ export function Apresation() {
             <a href="#">PLANOS</a>
           </Button>
           <Button mode="secondary" size="medium">
-            <Link href="/">REGISTRAR CONTA</Link>
+            <Link href="/auth/register">REGISTRAR CONTA</Link>
           </Button>
         </animate.div>
       </animate.section>
