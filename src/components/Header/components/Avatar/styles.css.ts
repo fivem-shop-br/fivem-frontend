@@ -14,6 +14,9 @@ export const Content = styled(Popover.Content, {
   gap: "15px",
 
   a: {
+    textDecoration: "none",
+    color: "white",
+
     display: "flex",
     alignItems: "center",
     gap: "10px",
@@ -39,8 +42,6 @@ export const Container = styled("div", {
 
   cursor: "pointer",
   backgroundSize: "cover",
-  backgroundImage:
-    "url(https://cdn.discordapp.com/attachments/1045873278901833788/1049105422394597536/wP0xXdbYgeWyVAAAAAElFTkSuQmCC.png)",
 });
 
 export const Arrow = styled(Popover.Arrow, {
