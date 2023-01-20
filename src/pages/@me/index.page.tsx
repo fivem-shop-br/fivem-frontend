@@ -1,18 +1,24 @@
 import { Container } from "./styled.css";
 import { Perfil } from "./components/Perfil";
 import { Config } from "./components/Config";
+import { NextSeo } from "next-seo";
+import { useAuth } from "@src/hooks/useAuth";
 
 export default function Me() {
+  const { user } = useAuth();
   return (
-    <Container>
-      <section>
-        <h1>Minha conta</h1>
-
+    <>
+      <NextSeo title={`${user ? `${user.name} - ` : ""} Fivem Shop`} />
+      <Container>
         <section>
-          <Perfil />
-          <Config />
+          <h1>Minha conta</h1>
+
+          <section>
+            <Perfil />
+            <Config />
+          </section>
         </section>
-      </section>
-    </Container>
+      </Container>
+    </>
   );
 }

@@ -11,6 +11,7 @@ import { Button } from "@fivem-shop/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CircleNotch, Envelope, Lock } from "phosphor-react";
 import { Register as apiRegister } from "@src/services/api";
+import { NextSeo } from "next-seo";
 
 const RegisterFormScrema = z.object({
   name: z.string().nonempty({ message: "Nome não pode ser vazio." }),
@@ -47,69 +48,72 @@ export default function Register() {
   }
 
   return (
-    <Main>
-      <Form onSubmit={handleSubmit(submitEvent)}>
-        <h1>Fazer Cadastro</h1>
+    <>
+      <NextSeo title="Registrar - Fivem Shop" />
+      <Main>
+        <Form onSubmit={handleSubmit(submitEvent)}>
+          <h1>Fazer Cadastro</h1>
 
-        <section>
-          <label>Nome</label>
-          <Input.Root>
-            <Input.Icon>
-              <Envelope size={22} />
-            </Input.Icon>
-            <Input.Input
-              type="text"
-              placeholder="Digite seu nome"
-              autoFocus
-              {...register("name")}
-            />
-          </Input.Root>
-          <span>{errors && errors.name?.message}</span>
-        </section>
+          <section>
+            <label>Nome</label>
+            <Input.Root>
+              <Input.Icon>
+                <Envelope size={22} />
+              </Input.Icon>
+              <Input.Input
+                type="text"
+                placeholder="Digite seu nome"
+                autoFocus
+                {...register("name")}
+              />
+            </Input.Root>
+            <span>{errors && errors.name?.message}</span>
+          </section>
 
-        <section>
-          <label>Email</label>
-          <Input.Root>
-            <Input.Icon>
-              <Envelope size={22} />
-            </Input.Icon>
-            <Input.Input
-              type="email"
-              placeholder="Digite seu e-mail"
-              autoFocus
-              {...register("email")}
-            />
-          </Input.Root>
-          <span>{errors && errors.email?.message}</span>
-        </section>
+          <section>
+            <label>Email</label>
+            <Input.Root>
+              <Input.Icon>
+                <Envelope size={22} />
+              </Input.Icon>
+              <Input.Input
+                type="email"
+                placeholder="Digite seu e-mail"
+                autoFocus
+                {...register("email")}
+              />
+            </Input.Root>
+            <span>{errors && errors.email?.message}</span>
+          </section>
 
-        <section>
-          <label>Senha</label>
-          <Input.Root>
-            <Input.Icon>
-              <Lock size={22} />
-            </Input.Icon>
-            <Input.Input
-              type="password"
-              placeholder="Digite seu senha"
-              {...register("password")}
-            />
-          </Input.Root>
-          <span>{errors.password && errors.password?.message}</span>
-        </section>
+          <section>
+            <label>Senha</label>
+            <Input.Root>
+              <Input.Icon>
+                <Lock size={22} />
+              </Input.Icon>
+              <Input.Input
+                type="password"
+                placeholder="Digite seu senha"
+                {...register("password")}
+              />
+            </Input.Root>
+            <span>{errors.password && errors.password?.message}</span>
+          </section>
 
-        <Button
-          mode="primary"
-          size="medium"
-          disabled={!watch("email") || !watch("password") || loading}
-        >
-          {loading ? <CircleNotch size={21} /> : "Entrar"}
-        </Button>
-        <h4>
-          Já tem uma conta? <Link href="/auth/login">Logar-se</Link>
-        </h4>
-      </Form>
-    </Main>
+          <Button
+            mode="primary"
+            size="medium"
+            disabled={!watch("email") || !watch("password") || loading}
+          >
+            {loading ? <CircleNotch size={21} /> : "Entrar"}
+          </Button>
+          <h4>
+            Já tem uma conta? <Link href="/auth/login">Logar-se</Link>
+          </h4>
+        </Form>
+      </Main>
+    </>
   );
 }
 

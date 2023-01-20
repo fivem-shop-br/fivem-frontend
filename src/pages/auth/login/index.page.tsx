@@ -14,6 +14,7 @@ import { useState } from "react";
 import { processReponseError } from "@src/utils/process-error";
 import { GetServerSideProps } from "next";
 import { parseCookies } from "nookies";
+import { NextSeo } from "next-seo";
 
 const LoginFormScrema = z.object({
   email: z.string().email({ message: "Insira um e-mail válido" }),
@@ -64,58 +65,61 @@ export default function Login() {
   }
 
   return (
-    <Main>
-      <Form onSubmit={handleSubmit(submitEvent)}>
-        <h1>Fazer Login</h1>
+    <>
+      <NextSeo title="Login - Fivem Shop" />
+      <Main>
+        <Form onSubmit={handleSubmit(submitEvent)}>
+          <h1>Fazer Login</h1>
 
-        <section>
-          <label>Email</label>
-          <Input.Root>
-            <Input.Icon>
-              <Envelope size={22} />
-            </Input.Icon>
-            <Input.Input
-              type="email"
-              placeholder="Digite seu e-mail"
-              autoFocus
-              {...register("email")}
-            />
-          </Input.Root>
-          <span>{errors && errors.email?.message}</span>
-        </section>
+          <section>
+            <label>Email</label>
+            <Input.Root>
+              <Input.Icon>
+                <Envelope size={22} />
+              </Input.Icon>
+              <Input.Input
+                type="email"
+                placeholder="Digite seu e-mail"
+                autoFocus
+                {...register("email")}
+              />
+            </Input.Root>
+            <span>{errors && errors.email?.message}</span>
+          </section>
 
-        <section>
-          <label>Senha</label>
-          <Input.Root>
-            <Input.Icon>
-              <Lock size={22} />
-            </Input.Icon>
-            <Input.Input
-              type="password"
-              placeholder="Digite seu senha"
-              {...register("password")}
-            />
-          </Input.Root>
-          <label>
-            {errors.password && <span>{errors.password?.message}</span>}
-            <h3>
-              <Link href="/auth/forgot-password">Esqueci minha senha</Link>
-            </h3>
-          </label>
-        </section>
+          <section>
+            <label>Senha</label>
+            <Input.Root>
+              <Input.Icon>
+                <Lock size={22} />
+              </Input.Icon>
+              <Input.Input
+                type="password"
+                placeholder="Digite seu senha"
+                {...register("password")}
+              />
+            </Input.Root>
+            <label>
+              {errors.password && <span>{errors.password?.message}</span>}
+              <h3>
+                <Link href="/auth/forgot-password">Esqueci minha senha</Link>
+              </h3>
+            </label>
+          </section>
 
-        <Button
-          mode="primary"
-          size="medium"
-          disabled={!watch("email") || !watch("password") || loading}
-        >
-          {loading ? <CircleNotch size={21} /> : "Entrar"}
-        </Button>
-        <h4>
-          Não tem uma conta? <Link href="/auth/register">Registre-se</Link>
-        </h4>
-      </Form>
-    </Main>
+          <Button
+            mode="primary"
+            size="medium"
+            disabled={!watch("email") || !watch("password") || loading}
+          >
+            {loading ? <CircleNotch size={21} /> : "Entrar"}
+          </Button>
+          <h4>
+            Não tem uma conta? <Link href="/auth/register">Registre-se</Link>
+          </h4>
+        </Form>
+      </Main>
+    </>
   );
 }
 
