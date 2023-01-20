@@ -48,13 +48,10 @@ export function AuthProvider({ children }: AuthProviderProps) {
     refetch();
   }
 
-  async function signIn({ email, password }: SignInCredentials) {
+  async function signIn(credenciais: SignInCredentials) {
     return new Promise(async (resolve, reject) => {
       try {
-        const { data } = await api.post<token>("signin", {
-          email,
-          password,
-        });
+        const { data } = await api.post<token>("signin", credenciais);
 
         setCookie(undefined, "fivem-shop.token", data.access_token, {
           maxAge: 60 * 60 * 24 * 7, // 7 days
