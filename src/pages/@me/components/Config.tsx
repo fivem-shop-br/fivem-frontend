@@ -1,5 +1,4 @@
-import { Button } from "@fivem-shop/react";
-import { Separator, Topic, Config as ConfigS } from "../styled.css";
+import { Config as ConfigS } from "../styled.css";
 import { TopicPasswordAuthorization } from "./Topic/password-authorization";
 import { RemovedAccount } from "./Topic/removed-account";
 import { VerificationAccount } from "./Topic/verification-account";

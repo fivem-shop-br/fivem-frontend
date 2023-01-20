@@ -31,7 +31,7 @@ export const Content = styled(Popover.Content, {
       fontSize: "15px",
     },
   },
-  zIndex: 11,
+  zIndex: 15,
 });
 
 export const Container = styled("div", {
