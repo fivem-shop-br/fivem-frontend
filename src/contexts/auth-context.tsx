@@ -1,7 +1,9 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
+import { createContext, ReactNode } from "react";
 
-import { destroyCookie, setCookie, parseCookies } from "nookies";
+import { destroyCookie, setCookie } from "nookies";
 import { api } from "../services/api-client";
+import { useQuery } from "react-query";
+import { getMe } from "@src/services/api";
 
 type User = {
   id: string;
@@ -26,7 +28,7 @@ type AuthContextData = {
   signIn: (credentials: SignInCredentials) => Promise<unknown>;
   signOut: () => void;
   loading: boolean;
-  user: User;
+  user: User | null | undefined;
 };
 
 type AuthProviderProps = {
@@ -34,25 +36,16 @@ type AuthProviderProps = {
 };
 
 export const AuthContext = createContext({} as AuthContextData);
-
 export function AuthProvider({ children }: AuthProviderProps) {
-  const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
-  const cookie = parseCookies();
-
-  useEffect(() => {
-    const authToken = async () => {
-      if (cookie["fivem-shop.token"]) {
-        return connect();
-      }
-      setLoading(false);
-    };
-    authToken();
-  }, []);
+  const {
+    isLoading: loading,
+    data: user,
+    refetch,
+  } = useQuery<User | null>("me", getMe);
 
   function signOut() {
-    setUser(null);
     destroyCookie(undefined, "fivem-shop.token");
+    refetch();
   }
 
   async function signIn({ email, password }: SignInCredentials) {
@@ -69,28 +62,16 @@ export function AuthProvider({ children }: AuthProviderProps) {
         });
 
         api.defaults.headers["Authorization"] = "Bearer " + data.access_token;
-        resolve("Authorization");
-
-        connect();
+        refetch();
+        resolve("authorized");
       } catch (err) {
         reject(err);
       }
     });
   }
 
-  async function connect() {
-    setLoading(true);
-    try {
-      const { data } = await api.get<User>("me");
-      setUser({ ...data });
-    } catch (e) {
-      signOut();
-    }
-    setLoading(false);
-  }
-
   return (
-    <AuthContext.Provider value={{ signIn, signOut, user: user!, loading }}>
+    <AuthContext.Provider value={{ signIn, signOut, user, loading }}>
       {children}
     </AuthContext.Provider>
   );
