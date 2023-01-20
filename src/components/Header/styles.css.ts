@@ -16,7 +16,7 @@ export const Container = styled(motion.header, {
     alignItems: "center",
     justifyContent: "space-between",
 
-    svg: {
+    "> svg": {
       display: "none",
     },
   },
@@ -91,7 +91,7 @@ export const Container = styled(motion.header, {
       flexDirection: "column",
       alignItems: "flex-start",
 
-      svg: {
+      "> svg": {
         display: "block",
       },
     },
