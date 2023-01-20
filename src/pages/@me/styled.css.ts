@@ -14,7 +14,12 @@ export const Container = styled("main", {
     flexDirection: "column",
 
     gap: "25px",
+
+    "@media (max-width: 576px)": {
+      padding: "0.5rem",
+    },
   },
+
   ...responsived,
 });
 
@@ -38,6 +43,11 @@ export const Config = styled("div", {
   div: {
     display: "flex",
     gap: "15px",
+
+    "@media (max-width: 576px)": {
+      flexDirection: "column",
+      gap: "15px",
+    },
   },
 
   paddingBottom: "40px",
@@ -47,6 +57,7 @@ export const Perfil = styled("div", {
   display: "flex",
   justifyContent: "space-between",
   alignContent: "center",
+
   div: {
     display: "flex",
     gap: "20px",
@@ -65,6 +76,11 @@ export const Perfil = styled("div", {
         color: "$gray-500",
       },
     },
+  },
+
+  "@media (max-width: 576px)": {
+    flexDirection: "column",
+    gap: "15px",
   },
 });
 

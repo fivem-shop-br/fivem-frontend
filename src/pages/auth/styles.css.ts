@@ -9,7 +9,11 @@ const loading = keyframes({
   },
 });
 
-export const Main = styled("main", {});
+export const Main = styled("main", {
+  "@media (max-width: 576px)": {
+    padding: "0.5rem",
+  },
+});
 export const Form = styled("form", {
   minHeight: "86vh",
   paddingTop: "calc(100px + 4rem)",
