@@ -76,4 +76,5 @@ export const Form = styled("form", {
       color: "$blue-700",
     },
   },
+  paddingBottom: "40px",
 });
