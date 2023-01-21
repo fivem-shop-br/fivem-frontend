@@ -1,42 +1,47 @@
-import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@fivem-shop/react";
-import { Container } from "./styles.css";
-
+import Image from "next/image";
 import Logo from "@src/source/logo.svg";
+import { useRef, useState } from "react";
+import { Container } from "./styles.css";
+import { List, X } from "phosphor-react";
+import { NavBar } from "./components/NavBar";
 import { useScroll } from "@src/hooks/useScroll";
-import { User } from "phosphor-react";
+import { useOutsideClick } from "@src/hooks/useOutsideClick";
+
+const mobileNavIconStyled: React.CSSProperties = {
+  position: "absolute",
+  right: "0",
+  top: "15px",
+  flex: 1,
+};
 
 export function Header() {
+  const NavRef = useRef(null);
   const { isScrolled } = useScroll();
+  const [mobileNav, setMobileNav] = useState(false);
+
+  function handleMobileNav() {
+    setMobileNav((state) => !state);
+  }
+
+  useOutsideClick(NavRef, () => {
+    setMobileNav(false);
+  });
+
+  const MobileNavIcon = mobileNav ? X : List;
 
   return (
-    <Container scrolled={isScrolled}>
-      <section>
+    <Container scrolled={isScrolled} mobileNav={mobileNav}>
+      <section ref={NavRef}>
         <Link href="/">
           <Image src={Logo} alt="Logo" />
         </Link>
-        <nav>
-          <a href="#">RECURSOS</a>
-          <a href="#band">STATUS</a>
-          <a href="#">SOBRE</a>
-          <div>
-            <Button mode="primary" asChild>
-              <a href="#">PLANOS</a>
-            </Button>
-            <Button
-              mode="secondary"
-              hoverColor="$gray-500"
-              backgroundColor="$gray-600"
-              asChild
-            >
-              <Link href="/">
-                <User weight="bold" />
-                LOGIN
-              </Link>
-            </Button>
-          </div>
-        </nav>
+        <NavBar />
+        <MobileNavIcon
+          size={24}
+          style={mobileNavIconStyled}
+          onClick={handleMobileNav}
+        />
       </section>
     </Container>
   );

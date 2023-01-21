@@ -10,10 +10,15 @@ export const Container = styled(motion.header, {
   right: 0,
 
   section: {
+    position: "relative",
     ...responsived,
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
+
+    "> svg": {
+      display: "none",
+    },
   },
 
   marginTop: "48px",
@@ -25,6 +30,13 @@ export const Container = styled(motion.header, {
         marginTop: 0,
         backgroundColor: "rgba(19, 21, 27, 0.9)",
         backdropFilter: "blur(20px)",
+      },
+    },
+    mobileNav: {
+      true: {
+        nav: {
+          display: "flex",
+        },
       },
     },
   },
@@ -60,13 +72,35 @@ export const Container = styled(motion.header, {
 
   "@media (max-width: 768px)": {
     marginTop: 0,
+
     nav: {
       display: "none",
+      flexDirection: "column",
+      gap: "10px",
+      margin: "10px 0",
+
+      "> a": {
+        fontWeight: 400,
+        fontSize: "14px",
+        width: "100%",
+        textAlign: "left",
+      },
     },
+
+    section: {
+      flexDirection: "column",
+      alignItems: "flex-start",
+
+      "> svg": {
+        display: "block",
+      },
+    },
+
     defaultVariants: {
       scrolled: true,
     },
+    backgroundColor: "rgba(19, 21, 27, 0.9)",
   },
 
-  zIndex: 1,
+  zIndex: 2,
 });
