@@ -45,6 +45,10 @@ export const globalStyles = globalCss({
   "#nprogress .peg": {
     boxShadow: "0 0 10px $blue-700, 0 0 5px $blue-700",
   },
+
+  ".swiper": {
+    paddingBottom: "50px !important",
+  },
 });
 
 export const responsived = {

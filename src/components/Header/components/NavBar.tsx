@@ -8,7 +8,7 @@ import SkeletonProvider from "react-loading-skeleton";
 
 const navLinks = [
   {
-    href: "/#",
+    href: "/#features",
     name: "RECURSOS",
   },
   {
