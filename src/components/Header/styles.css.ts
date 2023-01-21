@@ -102,5 +102,5 @@ export const Container = styled(motion.header, {
     backgroundColor: "rgba(19, 21, 27, 0.9)",
   },
 
-  zIndex: 1,
+  zIndex: 2,
 });

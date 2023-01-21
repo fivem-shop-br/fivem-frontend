@@ -51,6 +51,7 @@ export const DialogContent = styled(Dialog.Content, {
 });
 
 export const DialogHeader = styled("header", {
+  position: "relative",
   display: "flex",
   gap: "19px",
   justifyContent: "space-between",
@@ -68,6 +69,9 @@ export const DialogHeader = styled("header", {
   },
 
   "> svg": {
+    top: "-20px",
+    left: "-10px",
+    position: "absolute",
     cursor: "pointer",
   },
 });
@@ -96,4 +100,64 @@ export const DialogFooter = styled("footer", {
   background: "#242730",
   borderRadius: "0px 0px 10px 10px",
   padding: "10px 12px",
+});
+
+export const DialogProfile = styled("div", {
+  position: "relative",
+
+  width: "75px",
+  height: "75px",
+  borderRadius: "999px",
+  background: "#2D3439",
+
+  backgroundSize: "cover",
+
+  margin: "auto",
+  display: "flex",
+  textAlign: "center",
+
+  "&:hover": {
+    "&::before": {
+      content: "",
+      background: "rgba(0,0,0, 0.45)",
+      padding: "1px 74px 51px 1px",
+
+      borderRadius: "50%",
+    },
+
+    "&::after": {
+      position: "absolute",
+      top: "27px",
+
+      content: "MUDAR AVATAR",
+      lineHeight: "100%",
+
+      fontWeight: 600,
+      fontSize: "10px",
+    },
+  },
+
+  section: {
+    position: "absolute",
+    right: 0,
+    bottom: 0,
+
+    width: "30px",
+    height: "30px",
+    background: "$gray-700",
+
+    borderRadius: "50%",
+
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+
+    div: {
+      width: "20px",
+      height: "20px",
+      background: "$blue-700",
+
+      borderRadius: "50%",
+    },
+  },
 });

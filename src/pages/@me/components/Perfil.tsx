@@ -1,8 +1,8 @@
 import PerfilI from "@src/source/perfil.png";
 import { useAuth } from "@src/hooks/useAuth";
-import { Button } from "@fivem-shop/react";
 import { Image, Perfil as PerfilS } from "../styled.css";
 import { Skeleton } from "@src/components/Skeleton";
+import { EditProfile } from "./Buttons/edit-profile";
 
 export function Perfil() {
   const { user } = useAuth();
@@ -32,14 +32,7 @@ export function Perfil() {
         </ul>
       </div>
 
-      <Button
-        mode="secondary"
-        hoverColor="$gray-500"
-        backgroundColor="$gray-600"
-        css={{ height: "45px" }}
-      >
-        Editar
-      </Button>
+      <EditProfile />
     </PerfilS>
   );
 }

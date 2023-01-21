@@ -3,6 +3,8 @@ import { Perfil } from "./components/Perfil";
 import { Config } from "./components/Config";
 import { NextSeo } from "next-seo";
 import { useAuth } from "@src/hooks/useAuth";
+import { GetServerSideProps } from "next";
+import { parseCookies } from "nookies";
 
 export default function Me() {
   const { user } = useAuth();
@@ -12,7 +14,6 @@ export default function Me() {
       <Container>
         <section>
           <h1>Minha conta</h1>
-
           <section>
             <Perfil />
             <Config />
@@ -22,3 +23,17 @@ export default function Me() {
     </>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const cookie = parseCookies(ctx);
+  if (!cookie["fivem-shop.token"]) {
+    return {
+      redirect: {
+        destination: "/auth/login",
+        permanent: false,
+      },
+    };
+  }
+
+  return { props: {} };
+};
