@@ -116,6 +116,8 @@ export const DialogProfile = styled("div", {
   display: "flex",
   textAlign: "center",
 
+  cursor: "pointer",
+
   "&:hover": {
     "&::before": {
       content: "",

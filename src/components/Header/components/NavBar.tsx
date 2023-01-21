@@ -30,7 +30,7 @@ export function NavBar() {
       <div>
         <Skeleton width={138} height={44} state={!loading}>
           <Button mode="primary" asChild>
-            <a href="#">PLANOS</a>
+            <a href="#plans">PLANOS</a>
           </Button>
         </Skeleton>
 

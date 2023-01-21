@@ -7,10 +7,9 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Autoplay, Pagination } from "swiper";
 import { Swiper, SwiperProps, SwiperSlide } from "swiper/react";
-import { HomeProps } from "../..";
+import { HomeProps } from "@src/pages/index.page";
 
 export function SlideContainer({ sliders }: HomeProps) {
-  console.log(sliders);
   const settings: SwiperProps = {
     spaceBetween: 20,
     autoplay: {
