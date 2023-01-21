@@ -1,5 +1,5 @@
 import { Container } from "./index.css";
-import { Package } from "phosphor-react";
+import { Package, Bug } from "phosphor-react";
 import { SlideSingular } from "./slide-singular";
 import { animate, animateChildren } from "@src/utils/animate";
 
@@ -10,6 +10,7 @@ import { Swiper, SwiperProps, SwiperSlide } from "swiper/react";
 import { HomeProps } from "../..";
 
 export function SlideContainer({ sliders }: HomeProps) {
+  console.log(sliders);
   const settings: SwiperProps = {
     spaceBetween: 20,
     autoplay: {
@@ -45,7 +46,7 @@ export function SlideContainer({ sliders }: HomeProps) {
                   description={index.description}
                   image={index.image.url}
                 >
-                  <Package size={32} />
+                  {index.types && <Icon types={index.types} />}
                 </SlideSingular>
               </SwiperSlide>
             ))}
@@ -53,4 +54,12 @@ export function SlideContainer({ sliders }: HomeProps) {
       </animate.div>
     </Container>
   );
+}
+
+interface propsIcon {
+  types: "feature" | "fixed";
+}
+
+function Icon({ types }: propsIcon) {
+  return types === "feature" ? <Package size={32} /> : <Bug size={32} />;
 }

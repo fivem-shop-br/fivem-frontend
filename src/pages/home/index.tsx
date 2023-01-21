@@ -20,6 +20,7 @@ export interface HomeProps {
   sliders?: [
     {
       id: string;
+      types?: "feature" | "fixed";
       title: string;
       subtitle: string;
       description: string;

@@ -30,6 +30,7 @@ export async function getAllSlide() {
         title
         subtitle
         description
+        types
         image {
           url
         }
