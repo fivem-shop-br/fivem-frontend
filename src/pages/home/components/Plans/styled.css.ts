@@ -1,7 +1,8 @@
 import { styled } from "@fivem-shop/react";
 import { responsived } from "@src/styles/global.css";
+import { animate } from "@src/utils/animate";
 
-export const Container = styled("main", {
+export const Container = styled(animate.main, {
   marginTop: "148px !important",
   display: "flex",
   justifyContent: "space-between",
@@ -97,8 +98,11 @@ export const Card = styled("div", {
   width: "470px",
   "@media (max-width: 576px)": { width: "auto" },
   h3: { fontWeight: 600, fontSize: "$small", color: "$gray-500" },
-  span: { fontWeight: 600, fontSize: "$medium", color: "rgba(65, 73, 80)" },
-  h1: { fontWeight: 800, fontSize: "$heading-small !important" },
+  h1: {
+    fontWeight: 800,
+    fontSize: "$heading-small !important",
+    span: { fontWeight: 600, fontSize: "$medium", color: "rgba(65, 73, 80)" },
+  },
   p: {
     fontWeight: 400,
     lineHeight: "18px",
@@ -108,5 +112,9 @@ export const Card = styled("div", {
     gap: "10px",
   },
   "> p span": { color: "$blue-700", fontSize: "$medium" },
-  button: { width: "100%", margin: "50px auto 0 auto" },
+  "button, a": {
+    width: "100%",
+    margin: "50px auto 0 auto",
+    textDecoration: "none",
+  },
 });

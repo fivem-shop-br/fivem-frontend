@@ -29,7 +29,7 @@ export function SlideContainer({ sliders }: HomeProps) {
 
   return (
     <Container id="features">
-      <animate.div variants={animateChildren}>
+      <animate.div {...animateChildren}>
         <Swiper
           {...settings}
           modules={[Pagination, Autoplay]}

@@ -1,5 +1,6 @@
-import { Button } from "@fivem-shop/react";
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
+import Link from "next/link";
+import { Button } from "@fivem-shop/react";
 import { HomeProps } from "@src/pages/index.page";
 import { Check } from "phosphor-react";
 import { useState } from "react";
@@ -12,7 +13,7 @@ export function Card({ plans }: HomeProps) {
     plans && plans.filter((index) => index.title === plansValue)[0];
 
   return (
-    <CardContainer>
+    <CardContainer data-aos="fade-right" data-aos-delay="500">
       <ToggleGroup.Root
         id="plans"
         type="single"
@@ -55,8 +56,8 @@ export function Card({ plans }: HomeProps) {
               ))}
           </>
         )}
-        <Button size="medium" mode="primary">
-          COMEÇAR AGORA
+        <Button size="medium" mode="primary" asChild>
+          <Link href="/shop/new">COMEÇAR AGORA</Link>
         </Button>
       </CardS>
     </CardContainer>
