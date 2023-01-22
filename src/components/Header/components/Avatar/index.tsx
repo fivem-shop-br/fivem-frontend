@@ -8,7 +8,7 @@ import { Arrow, Container, Content } from "./styles.css";
 import { useState } from "react";
 
 const docsButtonCss = {
-  border: "1px solid $blue-700",
+  border: "1px solid $blue-500",
   background: "none",
   padding: "12px 20px",
   fontSize: "14px",

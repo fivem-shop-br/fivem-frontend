@@ -17,7 +17,7 @@ export function Apresation() {
         </animate.p>
         <animate.div {...animateChildren}>
           <Button mode="primary" size="medium" asChild>
-            <a href="#">PLANOS</a>
+            <a href="#plans">PLANOS</a>
           </Button>
           <Button mode="secondary" size="medium">
             <Link href="/auth/register">REGISTRAR CONTA</Link>

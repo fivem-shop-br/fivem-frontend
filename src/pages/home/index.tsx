@@ -4,34 +4,10 @@ import { Band } from "./components/Band";
 import { animateProvider } from "@src/utils/animate";
 import { Apresation } from "./components/Apresentation";
 import { SlideContainer } from "./components/Slide/slide-container";
+import { HomeProps } from "../index.page";
+import { Plans } from "./components/Plans";
 
-export interface HomeProps {
-  plans?: [
-    {
-      id: string;
-      title: string;
-      price: string;
-      time: string;
-      benefits: {
-        list: Array<string>;
-      };
-    }
-  ];
-  sliders?: [
-    {
-      id: string;
-      types?: "feature" | "fixed";
-      title: string;
-      subtitle: string;
-      description: string;
-      image: {
-        url: string;
-      };
-    }
-  ];
-}
-
-export default function Home({ sliders }: HomeProps) {
+export default function Home({ sliders, plans }: HomeProps) {
   return (
     <>
       <NextSeo
@@ -42,6 +18,7 @@ export default function Home({ sliders }: HomeProps) {
         <Apresation />
         <SlideContainer sliders={sliders} />
         <Band />
+        <Plans plans={plans} />
       </Main>
     </>
   );

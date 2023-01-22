@@ -11,6 +11,7 @@ import { queryClient } from "@src/services/query-client";
 import { start, done } from "nprogress";
 
 import "react-loading-skeleton/dist/skeleton.css";
+import "aos/dist/aos.css";
 
 globalStyles();
 export default function App({ Component, pageProps }: AppProps) {
