@@ -15,6 +15,7 @@ import { processReponseError } from "@src/utils/process-error";
 import { GetServerSideProps } from "next";
 import { parseCookies } from "nookies";
 import { NextSeo } from "next-seo";
+import { Layout } from "@src/components/Layout";
 
 const LoginFormScrema = z.object({
   email: z.string().email({ message: "Insira um e-mail válido" }),
@@ -65,7 +66,7 @@ export default function Login() {
   }
 
   return (
-    <>
+    <Layout>
       <NextSeo title="Login - Fivem Shop" />
       <Main>
         <Form onSubmit={handleSubmit(submitEvent)}>
@@ -119,7 +120,7 @@ export default function Login() {
           </h4>
         </Form>
       </Main>
-    </>
+    </Layout>
   );
 }
 
