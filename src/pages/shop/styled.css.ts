@@ -32,6 +32,8 @@ export const Shop = styled("div", {
     gap: "8px",
 
     ul: {
+      display: "flex",
+      flexDirection: "column",
       h3: {
         fontWeight: 500,
         fontSize: "16px",
@@ -49,7 +51,6 @@ export const Shop = styled("div", {
 });
 
 export const Image = styled("div", {
-  marginTop: "5px",
   width: "40px",
   height: "40px",
   borderRadius: "999px",
