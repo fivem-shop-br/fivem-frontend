@@ -1,4 +1,5 @@
 import { styled } from "@fivem-shop/react";
+import { scrollStyled } from "@src/styles/global.css";
 
 export const Container = styled("main", {
   display: "flex",
@@ -8,6 +9,9 @@ export const SideBarContainer = styled("aside", {
   background: "$gray-800",
 
   height: "100vh",
+
+  overflow: "auto",
+  ...scrollStyled,
 });
 
 export const Shop = styled("div", {
@@ -122,6 +126,9 @@ export const NavItem = styled("div", {
 });
 
 export const Children = styled("div", {
+  display: "flex",
+
+  flex: 1,
   padding: "25px",
   gap: "35px",
 });

@@ -1,7 +1,9 @@
 import { Skeleton } from "@src/components/Skeleton";
 import { useAuth } from "@src/hooks/useAuth";
 import { SideBar } from "../components/Sidebar";
-import { Container } from "./styled.css";
+import { Container, Sales, Statistics, Stats } from "./styled.css";
+import { GetServerSideProps } from "next";
+import { Package, Tag } from "phosphor-react";
 
 export default function Shop() {
   const { user } = useAuth();
@@ -10,14 +12,82 @@ export default function Shop() {
     <SideBar>
       <Container>
         <ul>
-          <Skeleton state={user?.name} width="500px" height="50px">
+          <Skeleton state={user?.name} width="500px" height="40px">
             <h1>Bem vindo, {user?.name}</h1>
           </Skeleton>
           <Skeleton state={user?.name} width="300px">
-            <span>é um prazer te ver aqui novamente!</span>
+            <h6>é um prazer te ver aqui novamente!</h6>
           </Skeleton>
         </ul>
+
+        <Statistics>
+          <Stats>
+            <div>
+              <data>
+                <Tag size={16} weight="fill" />
+              </data>
+              <span>Total Vendas</span>
+            </div>
+
+            <ul>
+              <Skeleton
+                state={user?.name}
+                width="130px"
+                height="20px"
+                theme="white"
+              >
+                <h2>R$5244,20</h2>
+              </Skeleton>
+              <span>Valor do mês atual.</span>
+            </ul>
+          </Stats>
+          <Stats secondary>
+            <div>
+              <data>
+                <Tag size={16} weight="fill" />
+              </data>
+              <span>Total Vendas</span>
+            </div>
+
+            <ul>
+              <Skeleton state={user?.name} width="130px" height="20px">
+                <h2>R$0,00</h2>
+              </Skeleton>
+              <span>Valor do mês atual.</span>
+            </ul>
+          </Stats>
+          <Stats secondary>
+            <div>
+              <data>
+                <Tag size={16} weight="fill" />
+              </data>
+              <span>Total Vendas</span>
+            </div>
+
+            <ul>
+              <Skeleton state={user?.name} width="130px" height="20px">
+                <h2>R$0,00</h2>
+              </Skeleton>
+              <span>Valor do mês atual.</span>
+            </ul>
+          </Stats>
+        </Statistics>
+        <Sales>
+          <div>
+            <Package size={50} />
+            <ul>
+              <h2>Você ainda não tem vendas</h2>
+              <span>Faça sua primeira venda, e todas aparecerão aqui!</span>
+            </ul>
+          </div>
+        </Sales>
       </Container>
     </SideBar>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  return {
+    props: {},
+  };
+};

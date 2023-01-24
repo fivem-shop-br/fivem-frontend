@@ -1,5 +1,7 @@
+import { getShops } from "@src/services/queries";
 import { useRouter } from "next/router";
-import { useQueries, useQuery } from "react-query";
+import { useQuery } from "react-query";
+import { ShopsProps } from "../../index.page";
 import { Image } from "../../styled.css";
 import { Menu } from "./components/Menu";
 import {

@@ -1,5 +1,20 @@
 import { globalCss } from "@fivem-shop/react";
 
+export const scrollStyled = {
+  "&::-webkit-scrollbar": {
+    width: "0.2rem",
+  },
+
+  "&::-webkit-scrollbar-track": {
+    background: "$gray-800",
+  },
+
+  "&::-webkit-scrollbar-thumb": {
+    borderRadius: "2rem",
+    background: "$gray-500",
+  },
+};
+
 export const globalStyles = globalCss({
   "*": {
     margin: 0,
@@ -12,19 +27,7 @@ export const globalStyles = globalCss({
   body: {
     background: "$gray-900",
     color: "white",
-
-    "&::-webkit-scrollbar": {
-      width: "0.2rem",
-    },
-
-    "&::-webkit-scrollbar-track": {
-      background: "$gray-800",
-    },
-
-    "&::-webkit-scrollbar-thumb": {
-      borderRadius: "2rem",
-      background: "$gray-500",
-    },
+    ...scrollStyled,
     "-webkit-font-smoothing": "antialiased",
   },
 
