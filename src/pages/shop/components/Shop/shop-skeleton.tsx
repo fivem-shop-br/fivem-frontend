@@ -1,7 +1,7 @@
 import { Button } from "@fivem-shop/react";
 import { buttonCss } from "@src/pages/@me/components/Config";
 import Skeleton from "react-loading-skeleton";
-import { Image, Shop as ShopS } from "../styled.css";
+import { Image, Shop as ShopS } from "../../styled.css";
 
 export function ShopSkeleton() {
   return (

@@ -1,22 +1,47 @@
 import { Layout } from "@src/components/Layout";
-import { useAuth } from "@src/hooks/useAuth";
+import { getShops } from "@src/services/queries";
 import { NextSeo } from "next-seo";
-import { Shop } from "./components/shop";
-import { ShopSkeleton } from "./components/shop-skeleton";
+import { useQuery } from "react-query";
+import { Shop } from "./components/Shop/shop";
+import { ShopSkeleton } from "./components/Shop/shop-skeleton";
 import { Container } from "./styled.css";
 
+interface ShopsProps {
+  id: string;
+  owner_id: string;
+  slug: string;
+  name: string;
+  description?: string;
+  logo?: string;
+  banner?: string;
+  favicon?: string;
+  primary_color?: string;
+  secondary_color?: string;
+  domain: string;
+  plan: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 export default function Shops() {
-  const { loading } = useAuth();
+  const { data, isLoading } = useQuery<ShopsProps[]>("shops", getShops);
 
   return (
     <Layout>
       <NextSeo title="Minhas Lojas - Fivem Shop" />
       <Container>
-        {!loading ? (
-          <Shop />
-        ) : (
-          [...Array(8)].map((_, key) => <ShopSkeleton key={key} />)
-        )}
+        {!isLoading
+          ? data &&
+            data.map(({ id, name, domain, logo: image }, key) => (
+              <Shop
+                id={id}
+                name={name}
+                domain={domain}
+                image={image!}
+                key={key}
+              />
+            ))
+          : [...Array(8)].map((_, key) => <ShopSkeleton key={key} />)}
       </Container>
     </Layout>
   );
