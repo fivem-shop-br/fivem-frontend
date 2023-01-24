@@ -54,6 +54,11 @@ export const Menu = styled("menu", {
   ".CaretUp": {
     transition: "transform 300ms cubic-bezier(0.87, 0, 0.13, 1)",
   },
+
+  a: {
+    textDecoration: "none",
+    color: "white",
+  },
 });
 
 export const NavItem = styled("div", {
@@ -105,7 +110,7 @@ export const NavItem = styled("div", {
     },
     content: {
       true: {
-        marginLeft: "20px",
+        padding: "15px 60px",
       },
     },
   },
@@ -114,4 +119,9 @@ export const NavItem = styled("div", {
     position: "absolute",
     right: "20px",
   },
+});
+
+export const Children = styled("div", {
+  padding: "25px",
+  gap: "35px",
 });
