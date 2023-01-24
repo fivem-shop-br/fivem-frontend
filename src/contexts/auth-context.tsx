@@ -3,7 +3,7 @@ import { createContext, ReactNode } from "react";
 import { destroyCookie, setCookie } from "nookies";
 import { api } from "../services/api-client";
 import { useQuery } from "react-query";
-import { getMe } from "@src/services/api";
+import { getMe } from "@src/services/queries";
 
 type User = {
   id: string;
