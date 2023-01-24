@@ -6,10 +6,11 @@ import { Apresation } from "./components/Apresentation";
 import { SlideContainer } from "./components/Slide/slide-container";
 import { HomeProps } from "../index.page";
 import { Plans } from "./components/Plans";
+import { Layout } from "@src/components/Layout";
 
 export default function Home({ sliders, plans }: HomeProps) {
   return (
-    <>
+    <Layout>
       <NextSeo
         title="Fivem Shop | A sua loja aqui"
         description="Deseja criar seu site, para seu servidor? aqui estamos FIVEM SHOP! um provedor renomado ao seu dispor."
@@ -20,6 +21,6 @@ export default function Home({ sliders, plans }: HomeProps) {
         <Band />
         <Plans plans={plans} />
       </Main>
-    </>
+    </Layout>
   );
 }

@@ -27,7 +27,6 @@ export default function App({ Component, pageProps }: AppProps) {
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <SkeletonTheme baseColor="#2D3439" highlightColor="#75808A">
-          <Header />
           <Component {...pageProps} />
         </SkeletonTheme>
       </AuthProvider>

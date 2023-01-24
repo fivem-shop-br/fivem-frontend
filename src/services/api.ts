@@ -21,19 +21,6 @@ export function setupApiClient(ctx = undefined) {
   return api;
 }
 
-export async function getMe() {
-  const cookie = parseCookies();
-  if (cookie["fivem-shop.token"]) {
-    try {
-      const { data } = await api.get("me");
-      return data;
-    } catch (err) {
-      destroyCookie(undefined, "fivem-shop.token");
-    }
-  }
-  return null;
-}
-
 interface propsRegister {
   data: unknown;
   setLoading: (newState: boolean) => void;

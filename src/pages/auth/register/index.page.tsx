@@ -12,6 +12,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { CircleNotch, Envelope, Lock } from "phosphor-react";
 import { Register as apiRegister } from "@src/services/api";
 import { NextSeo } from "next-seo";
+import { Layout } from "@src/components/Layout";
 
 const RegisterFormScrema = z.object({
   name: z.string().nonempty({ message: "Nome não pode ser vazio." }),
@@ -48,7 +49,7 @@ export default function Register() {
   }
 
   return (
-    <>
+    <Layout>
       <NextSeo title="Registrar - Fivem Shop" />
       <Main>
         <Form onSubmit={handleSubmit(submitEvent)}>
@@ -113,7 +114,7 @@ export default function Register() {
           </h4>
         </Form>
       </Main>
-    </>
+    </Layout>
   );
 }
 

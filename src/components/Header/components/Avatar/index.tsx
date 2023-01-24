@@ -37,10 +37,10 @@ export function Avatar() {
             <User size={22} />
             <span>Meu perfil</span>
           </Link>
-          <a>
+          <Link href="/shop" onClick={handleOpen}>
             <ShoppingCart size={24} />
             <span>Minhas Lojas</span>
-          </a>
+          </Link>
           <a onClick={signOut}>
             <XCircle size={24} />
             <span>Desconectar</span>

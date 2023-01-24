@@ -5,11 +5,12 @@ import { NextSeo } from "next-seo";
 import { useAuth } from "@src/hooks/useAuth";
 import { GetServerSideProps } from "next";
 import { parseCookies } from "nookies";
+import { Layout } from "@src/components/Layout";
 
 export default function Me() {
   const { user } = useAuth();
   return (
-    <>
+    <Layout>
       <NextSeo title={`${user ? `${user.name} - ` : ""} Fivem Shop`} />
       <Container>
         <section>
@@ -20,7 +21,7 @@ export default function Me() {
           </section>
         </section>
       </Container>
-    </>
+    </Layout>
   );
 }
 
