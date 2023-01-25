@@ -3,7 +3,7 @@ import { useAuth } from "@src/hooks/useAuth";
 import { SideBar } from "../components/Sidebar";
 import { Container, Sales, Statistics, Stats } from "./styled.css";
 import { GetServerSideProps } from "next";
-import { Package, Tag } from "phosphor-react";
+import { ClipboardText, Package, Tag } from "phosphor-react";
 
 export default function Shop() {
   const { user } = useAuth();
@@ -74,7 +74,7 @@ export default function Shop() {
         </Statistics>
         <Sales>
           <div>
-            <Package size={50} />
+            <ClipboardText size={50} />
             <ul>
               <h2>Você ainda não tem vendas</h2>
               <span>Faça sua primeira venda, e todas aparecerão aqui!</span>

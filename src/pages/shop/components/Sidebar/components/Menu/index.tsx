@@ -2,11 +2,18 @@ import * as Accordion from "@radix-ui/react-accordion";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-import { CaretUp } from "phosphor-react";
+import { CaretLeft, CaretRight, CaretUp } from "phosphor-react";
+import { useEffect, useState } from "react";
+import { SideBarProps } from "../..";
 import { NavItem, Menu as MenuS } from "../../styles.css";
 import { menuItems } from "./settings";
 
-export function Menu() {
+interface MenuProps {
+  defaultPath: SideBarProps["path"];
+}
+
+export function Menu({ defaultPath: valueMenu }: MenuProps) {
+  const [defaultValueMenu, setDefaultValueMenu] = useState(valueMenu);
   const router = useRouter();
   const validation = `/shop/[shop]`;
   const defaultPath = `/shop/${router.query.shop}`;
@@ -32,11 +39,16 @@ export function Menu() {
           )
       )}
 
-      <Accordion.Root type="single" collapsible>
+      <Accordion.Root
+        type="single"
+        onValueChange={setDefaultValueMenu}
+        value={defaultValueMenu}
+        collapsible
+      >
         {menuItems.map(
           ({ isAccordion, name, Icon, accordion, path: providerPath }, key) =>
             isAccordion && (
-              <Accordion.Item value={key.toString()} className="item" key={key}>
+              <Accordion.Item value={providerPath} className="item" key={key}>
                 <Accordion.Header>
                   <Accordion.Trigger asChild>
                     <NavItem>
@@ -76,6 +88,13 @@ export function Menu() {
             )
         )}
       </Accordion.Root>
+
+      <Link href="/shop">
+        <NavItem>
+          <CaretLeft size={32} weight="thin" />
+          <h3>Voltar</h3>
+        </NavItem>
+      </Link>
     </MenuS>
   );
 }
