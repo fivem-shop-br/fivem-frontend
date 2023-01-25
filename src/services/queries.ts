@@ -18,7 +18,7 @@ export async function getShops() {
   const cookie = parseCookies();
   if (cookie["fivem-shop.token"]) {
     try {
-      const { data } = await api.get("shop");
+      const { data } = await api.get("shops");
       return data;
     } catch (err) {
       destroyCookie(undefined, "fivem-shop.token");
