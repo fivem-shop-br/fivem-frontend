@@ -63,6 +63,10 @@ export const Container = styled(animate.main, {
     justifyContent: "center",
 
     transition: "0.2s",
+
+    "@media (max-width: 576px)": {
+      padding: "10px 10px",
+    },
   },
 
   ".ToggleGroupItem:first-child": {

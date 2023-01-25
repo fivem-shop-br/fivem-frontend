@@ -6,7 +6,7 @@ import { Shop } from "./components/Shop/shop";
 import { ShopSkeleton } from "./components/Shop/shop-skeleton";
 import { Container } from "./styled.css";
 
-interface ShopsProps {
+export interface ShopsProps {
   id: string;
   owner_id: string;
   slug: string;
