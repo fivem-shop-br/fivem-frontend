@@ -2,14 +2,18 @@ import { Skeleton } from "@src/components/Skeleton";
 import { useAuth } from "@src/hooks/useAuth";
 import { SideBar } from "../components/Sidebar";
 import { Container, Sales, Statistics, Stats } from "./styled.css";
+import { ClipboardText, Tag } from "phosphor-react";
 import { GetServerSideProps } from "next";
-import { ClipboardText, Package, Tag } from "phosphor-react";
 
-export default function Shop() {
+interface ShopProps {
+  shopId: string;
+}
+
+export default function Shop({ shopId }: ShopProps) {
   const { user } = useAuth();
 
   return (
-    <SideBar>
+    <SideBar shopId={shopId}>
       <Container>
         <ul>
           <Skeleton state={user?.name} width="500px" height="40px">
@@ -86,8 +90,12 @@ export default function Shop() {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+export const getServerSideProps: GetServerSideProps = async ({
+  query: { shop },
+}) => {
   return {
-    props: {},
+    props: {
+      shopId: shop,
+    },
   };
 };
