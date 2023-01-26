@@ -132,4 +132,12 @@ export const Children = styled("div", {
   flex: 1,
   padding: "25px",
   gap: "35px",
+
+  variants: {
+    overflow: {
+      true: {
+        padding: "25px 25px 0 25px",
+      },
+    },
+  },
 });

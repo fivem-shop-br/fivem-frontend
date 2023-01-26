@@ -49,4 +49,29 @@ export const Area = styled("section", {
       color: "$gray-500",
     },
   },
+
+  variants: {
+    overflow: {
+      true: {
+        background: "transparent",
+        display: "block",
+
+        section: {
+          textAlign: "left",
+          label: {
+            width: "100%",
+            color: "white",
+          },
+
+          input: {
+            padding: "14px",
+          },
+        },
+
+        button: {
+          marginTop: "15px",
+        },
+      },
+    },
+  },
 });

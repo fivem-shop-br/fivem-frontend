@@ -5,7 +5,7 @@ import { Container, Sales, Statistics, Stats } from "./styled.css";
 import { ClipboardText, Tag } from "phosphor-react";
 import { GetServerSideProps } from "next";
 
-interface ShopProps {
+export interface ShopProps {
   shopId: string;
 }
 
