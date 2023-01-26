@@ -10,10 +10,10 @@ export function ShopSkeleton() {
         <Image />
         <ul>
           <Skeleton width="150px" height="20px" />
-          <Skeleton width="100px" height="15px" />
+          <Skeleton width="100px" height="15px" style={{ marginTop: "2px" }} />
         </ul>
       </div>
-      <Skeleton style={{ width: "100%" }} height="45px" />
+      <Skeleton style={{ width: "100%" }} height="40px" />
     </ShopS>
   );
 }
