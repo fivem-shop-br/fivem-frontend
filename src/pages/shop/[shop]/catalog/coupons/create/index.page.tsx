@@ -5,12 +5,12 @@ import { Container } from "../../../styled.css";
 import { Area, Header } from "../../styles.css";
 import * as Input from "@fivem-shop/react";
 import { Button } from "@fivem-shop/react";
-export default function CreateCategorie({ shopId }: ShopProps) {
+export default function Categories({ shopId }: ShopProps) {
   return (
     <SideBar path="/catalog" shopId={shopId} overflow={true}>
       <Container>
         <Header>
-          <h1>Criar Categoria</h1>
+          <h1>Criar Cupon</h1>
         </Header>
         <Area overflow>
           <section>
