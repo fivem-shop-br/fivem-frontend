@@ -9,9 +9,11 @@ import {
   Package,
   PaintBucket,
   PencilSimpleLine,
+  Plugs,
   SquaresFour,
   Storefront,
   Tag,
+  TerminalWindow,
   Ticket,
 } from "phosphor-react";
 
@@ -65,6 +67,19 @@ export const menuItems = [
         path: "/signature",
         name: "Assinatura",
         Icon: (props: IconProps) => <PencilSimpleLine {...props} />,
+      },
+    ],
+  },
+  {
+    path: "/integration",
+    name: "Integração",
+    Icon: (props: IconProps) => <Plugs {...props} />,
+    isAccordion: true,
+    accordion: [
+      {
+        path: "/commands",
+        name: "Comandos",
+        Icon: (props: IconProps) => <TerminalWindow {...props} />,
       },
     ],
   },

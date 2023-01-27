@@ -6,6 +6,7 @@ export const Container = styled("main", {
 });
 
 export const SideBarContainer = styled("aside", {
+  minWidth: "290px",
   background: "$gray-800",
 
   height: "100vh",
@@ -131,4 +132,12 @@ export const Children = styled("div", {
   flex: 1,
   padding: "25px",
   gap: "35px",
+
+  variants: {
+    overflow: {
+      true: {
+        padding: "25px 25px 0 25px",
+      },
+    },
+  },
 });

@@ -91,6 +91,14 @@ export const DialogInput = styled("section", {
     fontWeight: 600,
     fontSize: "14px",
   },
+
+  span: {
+    color: "$gray-500",
+  },
+
+  "input:disabled": {
+    opacity: 0.5,
+  },
 });
 
 export const DialogFooter = styled("footer", {
@@ -161,5 +169,19 @@ export const DialogProfile = styled("div", {
 
       borderRadius: "50%",
     },
+  },
+
+  input: {
+    width: "100%",
+    height: "100%",
+    position: "absolute",
+    opacity: 0,
+  },
+
+  label: {
+    cursor: "pointer",
+    position: "absolute",
+    padding: "40px",
+    zIndex: 5,
   },
 });

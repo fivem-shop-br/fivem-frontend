@@ -1,13 +1,17 @@
 import { Button } from "@fivem-shop/react";
 import { buttonCss } from "@src/pages/@me/components/Config";
 import { SideBar } from "@src/pages/shop/components/Sidebar";
+import { GetServerSideProps } from "next";
+import { useRouter } from "next/router";
 import { Plus, Ticket } from "phosphor-react";
+import { ShopProps } from "../../index.page";
 import { Container } from "../../styled.css";
 import { Area, Header } from "../styles.css";
 
-export default function Coupons() {
+export default function Coupons({ shopId }: ShopProps) {
+  const router = useRouter();
   return (
-    <SideBar path="/catalog">
+    <SideBar path="/catalog" shopId={shopId}>
       <Container>
         <Header>
           <h1>Todos Cupons</h1>
@@ -30,3 +34,13 @@ export default function Coupons() {
     </SideBar>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async ({
+  query: { shop },
+}) => {
+  return {
+    props: {
+      shopId: shop,
+    },
+  };
+};

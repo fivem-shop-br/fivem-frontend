@@ -1,6 +1,6 @@
 import { processReponseError } from "@src/utils/process-error";
 import axios, { AxiosError } from "axios";
-import { destroyCookie, parseCookies } from "nookies";
+import { parseCookies } from "nookies";
 import { api } from "./api-client";
 
 export interface Error {

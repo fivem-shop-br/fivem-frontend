@@ -5,7 +5,7 @@ import { api } from "../services/api-client";
 import { useQuery } from "react-query";
 import { getMe } from "@src/services/queries";
 
-type User = {
+export type User = {
   id: string;
   email: string;
   name: string;

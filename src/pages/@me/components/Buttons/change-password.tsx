@@ -21,52 +21,54 @@ export function ChangePassword() {
       </Dialog.Trigger>
       <Dialog.Portal>
         <DialogOverlay />
-        <DialogContent>
-          <section>
-            <DialogHeader>
-              <ul></ul>
-              <ul>
-                <h1>Atualizar sua senha</h1>
-                <span>Insira sua senha atual e uma nova senha.</span>
-              </ul>
+        <DialogContent asChild>
+          <form>
+            <section>
+              <DialogHeader>
+                <ul></ul>
+                <ul>
+                  <h1>Atualizar sua senha</h1>
+                  <span>Insira sua senha atual e uma nova senha.</span>
+                </ul>
+                <Dialog.Close asChild>
+                  <X size={32} />
+                </Dialog.Close>
+              </DialogHeader>
+              <DialogInput>
+                <label>SENHA ATUAL</label>
+                <Input.Root>
+                  <Input.Input type="password" />
+                </Input.Root>
+              </DialogInput>
+              <DialogInput>
+                <label>NOVA ATUAL</label>
+                <Input.Root>
+                  <Input.Input type="password" />
+                </Input.Root>
+              </DialogInput>
+              <DialogInput>
+                <label>CONFIRMAR NOVA SENHA</label>
+                <Input.Root>
+                  <Input.Input type="password" />
+                </Input.Root>
+              </DialogInput>
+            </section>
+            <DialogFooter>
               <Dialog.Close asChild>
-                <X size={32} />
+                <Button
+                  mode="primary"
+                  backgroundColor="transparent"
+                  hoverColor="transparent"
+                  css={{ ...buttonCss }}
+                >
+                  Cancelar
+                </Button>
               </Dialog.Close>
-            </DialogHeader>
-            <DialogInput>
-              <label>SENHA ATUAL</label>
-              <Input.Root>
-                <Input.Input type="password" />
-              </Input.Root>
-            </DialogInput>
-            <DialogInput>
-              <label>NOVA ATUAL</label>
-              <Input.Root>
-                <Input.Input type="password" />
-              </Input.Root>
-            </DialogInput>
-            <DialogInput>
-              <label>CONFIRMAR NOVA SENHA</label>
-              <Input.Root>
-                <Input.Input type="password" />
-              </Input.Root>
-            </DialogInput>
-          </section>
-          <DialogFooter>
-            <Dialog.Close asChild>
-              <Button
-                mode="primary"
-                backgroundColor="transparent"
-                hoverColor="transparent"
-                css={{ ...buttonCss }}
-              >
-                Cancelar
+              <Button mode="primary" css={buttonCss}>
+                Pronto
               </Button>
-            </Dialog.Close>
-            <Button mode="primary" css={buttonCss}>
-              Pronto
-            </Button>
-          </DialogFooter>
+            </DialogFooter>
+          </form>
         </DialogContent>
       </Dialog.Portal>
     </Dialog.Root>
