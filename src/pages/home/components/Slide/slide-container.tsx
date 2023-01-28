@@ -13,7 +13,7 @@ export function SlideContainer({ sliders }: HomeProps) {
   const settings: SwiperProps = {
     spaceBetween: 20,
     autoplay: {
-      delay: 2000,
+      delay: 5000,
       disableOnInteraction: false,
     },
     pagination: {
