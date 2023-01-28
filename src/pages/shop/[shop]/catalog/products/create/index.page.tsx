@@ -35,11 +35,7 @@ export default function CreateProduct({ shopId }: ShopProps) {
                 <Input.Icon>
                   <Package size={22} />
                 </Input.Icon>
-                <Input.Input
-                  type="text"
-                  placeholder="Nome da produto"
-                  autoFocus
-                />
+                <Input.Input type="text" placeholder="Nome da produto" />
               </Input.Root>
             </section>
             <section>
@@ -48,11 +44,7 @@ export default function CreateProduct({ shopId }: ShopProps) {
                 <Input.Icon>
                   <CurrencyDollarSimple size={22} />
                 </Input.Icon>
-                <Input.Input
-                  type="text"
-                  placeholder="Preço do produto"
-                  autoFocus
-                />
+                <Input.Input type="text" placeholder="Preço do produto" />
               </Input.Root>
             </section>
 

@@ -15,6 +15,7 @@ import {
   Tag,
   TerminalWindow,
   Ticket,
+  WifiHigh,
 } from "phosphor-react";
 
 export const menuItems = [
@@ -80,6 +81,11 @@ export const menuItems = [
         path: "/commands",
         name: "Comandos",
         Icon: (props: IconProps) => <TerminalWindow {...props} />,
+      },
+      {
+        path: "/connection",
+        name: "Conexão",
+        Icon: (props: IconProps) => <WifiHigh {...props} />,
       },
     ],
   },

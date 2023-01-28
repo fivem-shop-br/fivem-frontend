@@ -70,6 +70,10 @@ export const Area = styled("section", {
             color: "white",
           },
         },
+
+        button: {
+          maxWidth: "300px",
+        },
       },
     },
   },
