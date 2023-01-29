@@ -5,7 +5,8 @@ import { Container } from "../../../styled.css";
 import { Area, Header } from "../../styles.css";
 import * as Input from "@fivem-shop/react";
 import { Button } from "@fivem-shop/react";
-export default function Categories({ shopId }: ShopProps) {
+import { Tag } from "phosphor-react";
+export default function CreateCategorie({ shopId }: ShopProps) {
   return (
     <SideBar path="/catalog" shopId={shopId} overflow={true}>
       <Container>
@@ -16,6 +17,9 @@ export default function Categories({ shopId }: ShopProps) {
           <section>
             <label>Nome</label>
             <Input.Root>
+              <Input.Icon>
+                <Tag size={22} />
+              </Input.Icon>
               <Input.Input
                 type="text"
                 placeholder="Nome da categoria"
@@ -24,7 +28,7 @@ export default function Categories({ shopId }: ShopProps) {
             </Input.Root>
           </section>
           <Button mode="primary" disabled>
-            Finalizar
+            Finalizar Categoria
           </Button>
         </Area>
       </Container>

@@ -50,11 +50,18 @@ export const Area = styled("section", {
     },
   },
 
+  div: {
+    maxWidth: "none",
+  },
+
   variants: {
     overflow: {
       true: {
         background: "transparent",
-        display: "block",
+        display: "flex",
+        gap: "20px",
+
+        justifyContent: "flex-start",
 
         section: {
           textAlign: "left",
@@ -62,16 +69,45 @@ export const Area = styled("section", {
             width: "100%",
             color: "white",
           },
-
-          input: {
-            padding: "14px",
-          },
         },
 
         button: {
-          marginTop: "15px",
+          maxWidth: "300px",
         },
       },
     },
+  },
+});
+
+export const Inputs = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  gap: "25px",
+
+  section: {
+    flex: 1,
+  },
+});
+
+export const InputFile = styled("section", {
+  maxWidth: "92px",
+
+  position: "relative",
+
+  input: {
+    position: "absolute",
+    opacity: 0,
+  },
+
+  "label:nth-child(2)": {
+    background: "$gray-700",
+    border: "1px solid $gray-700",
+    padding: "30px",
+
+    borderRadius: "5px",
+
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

@@ -7,21 +7,28 @@ import { ShopProps } from "../../index.page";
 import { Container } from "../../styled.css";
 import { Terminal } from "../styles.css";
 
-const socket = io("ws://localhost:3000", {
-  transports: ["websocket"],
-});
+function connectedWs(token: string) {
+  const socket = io("ws://localhost:3000", {
+    transports: ["websocket"],
+    auth: {
+      token,
+    },
+  });
+  return socket;
+}
 
 interface messageProps {
   command: string;
 }
 
 export default function Commands({ shopId }: ShopProps) {
+  const socket = connectedWs("1");
   const [commands, setCommands] = useState<messageProps[]>([]);
   const [command, setCommand] = useState("");
 
   const handleCommands = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      socket.emit("command", "assas");
+      socket.emit("command", command);
 
       setCommands((rest) => [...rest, { command }]);
       setCommand("");

@@ -21,7 +21,13 @@ export function SlideSingular(props: SlideProps) {
       </div>
       <p>{props.description}</p>
 
-      <Image src={props.image} width="1920" height="1080" alt={props.title} />
+      <Image
+        src={props.image}
+        width="1920"
+        height="1080"
+        alt={props.title}
+        quality={100}
+      />
     </ContainerSingular>
   );
 }

@@ -31,7 +31,7 @@ export function Menu({ defaultPath: valueMenu }: MenuProps) {
               <NavItem active={isActived(`${validation}`)}>
                 <Icon
                   size={32}
-                  weight={isActived(`${validation}`) ? "fill" : "thin"}
+                  weight={isActived(`${validation}`) ? "fill" : "light"}
                 />
                 <h3>{name}</h3>
               </NavItem>
@@ -52,7 +52,7 @@ export function Menu({ defaultPath: valueMenu }: MenuProps) {
                 <Accordion.Header>
                   <Accordion.Trigger asChild>
                     <NavItem>
-                      <Icon size={32} weight="thin" />
+                      <Icon size={32} weight="light" />
                       <h3>{name}</h3>
                       <CaretUp size={20} className="CaretUp" />
                     </NavItem>
@@ -76,7 +76,7 @@ export function Menu({ defaultPath: valueMenu }: MenuProps) {
                             weight={
                               isActived(`${validation}${providerPath}${path}`)
                                 ? "fill"
-                                : "thin"
+                                : "light"
                             }
                           />
                           <h3>{name}</h3>
@@ -91,7 +91,7 @@ export function Menu({ defaultPath: valueMenu }: MenuProps) {
 
       <Link href="/shop">
         <NavItem>
-          <CaretLeft size={32} weight="thin" />
+          <CaretLeft size={32} weight="light" />
           <h3>Voltar</h3>
         </NavItem>
       </Link>
