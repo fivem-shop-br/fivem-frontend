@@ -6,6 +6,7 @@ import { Area, Header, Inputs } from "../../styles.css";
 import * as Input from "@fivem-shop/react";
 import { Button } from "@fivem-shop/react";
 import { Barcode, Percent } from "phosphor-react";
+import { buttonCss } from "@src/pages/@me/components/Config";
 export default function Categories({ shopId }: ShopProps) {
   return (
     <SideBar path="/catalog" shopId={shopId} overflow={true}>
@@ -38,7 +39,7 @@ export default function Categories({ shopId }: ShopProps) {
               </Input.Root>
             </section>
           </Inputs>
-          <Button mode="primary" disabled>
+          <Button mode="primary" css={buttonCss} disabled>
             Finalizar Cupon
           </Button>
         </Area>

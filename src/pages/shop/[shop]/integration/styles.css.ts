@@ -2,7 +2,7 @@ import { styled } from "@fivem-shop/react";
 import { scrollStyled } from "@src/styles/global.css";
 
 export const Terminal = styled("section", {
-  maxHeight: "78.3vh",
+  height: "100vh",
 
   flex: 1,
   display: "flex",

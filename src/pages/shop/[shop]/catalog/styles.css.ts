@@ -1,4 +1,6 @@
 import { styled } from "@fivem-shop/react";
+import { loading } from "@src/pages/auth/styles.css";
+import { scrollStyled } from "@src/styles/global.css";
 
 export const Container = styled("main", {
   flex: 1,
@@ -19,8 +21,11 @@ export const Header = styled("header", {
   },
 });
 
-export const Area = styled("section", {
+export const Area = styled("form", {
   flex: 1,
+
+  "overflow-y": "auto",
+  ...scrollStyled,
 
   background: "$gray-800",
   borderRadius: "5px",
@@ -55,6 +60,12 @@ export const Area = styled("section", {
   },
 
   variants: {
+    table: {
+      true: {
+        display: "block",
+      },
+    },
+
     overflow: {
       true: {
         background: "transparent",
@@ -69,10 +80,18 @@ export const Area = styled("section", {
             width: "100%",
             color: "white",
           },
+
+          span: {
+            color: "#ff7373",
+          },
         },
 
         button: {
           maxWidth: "300px",
+
+          svg: {
+            animation: `${loading} 0.5s linear infinite`,
+          },
         },
       },
     },
@@ -109,5 +128,34 @@ export const InputFile = styled("section", {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+  },
+});
+
+export const Table = styled("table", {
+  width: "100%",
+  borderCollapse: "collapse",
+
+  td: {
+    borderTop: "1px solid $gray-700",
+
+    fontWeight: "400",
+    fontSize: "14px",
+    color: "white",
+  },
+
+  th: {
+    fontWeight: "600",
+    fontSize: "16px",
+    lineHeight: "130%",
+    color: "white",
+  },
+
+  "th, td": {
+    textAlign: "left",
+    padding: "15px 30px",
+  },
+
+  ".icons": {
+    margin: "0 10px",
   },
 });
