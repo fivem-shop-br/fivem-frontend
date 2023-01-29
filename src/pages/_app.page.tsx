@@ -12,6 +12,7 @@ import { start, done } from "nprogress";
 
 import "react-loading-skeleton/dist/skeleton.css";
 import "aos/dist/aos.css";
+import { TooltipProvider } from "@radix-ui/react-tooltip";
 
 globalStyles();
 export default function App({ Component, pageProps }: AppProps) {
@@ -26,9 +27,11 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <SkeletonTheme baseColor="#2D3439" highlightColor="#75808A">
-          <Component {...pageProps} />
-        </SkeletonTheme>
+        <TooltipProvider delayDuration={0}>
+          <SkeletonTheme baseColor="#2D3439" highlightColor="#75808A">
+            <Component {...pageProps} />
+          </SkeletonTheme>
+        </TooltipProvider>
       </AuthProvider>
     </QueryClientProvider>
   );
