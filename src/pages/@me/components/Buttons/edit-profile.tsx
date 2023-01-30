@@ -28,12 +28,11 @@ interface editProfileProps extends z.infer<typeof editProfileSChema> {
 }
 
 export function EditProfile() {
-  const queryClient = useQueryClient();
   const { user } = useAuth();
+  const queryClient = useQueryClient();
   const [isOpenDialog, setIsOpenDialog] = useState(false);
 
   const {
-    setError,
     register,
     handleSubmit,
     watch,

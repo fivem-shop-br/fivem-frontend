@@ -1,6 +1,6 @@
 import { styled, keyframes } from "@fivem-shop/react";
 
-const loading = keyframes({
+export const loading = keyframes({
   from: {
     transform: "rotate(0deg)",
   },

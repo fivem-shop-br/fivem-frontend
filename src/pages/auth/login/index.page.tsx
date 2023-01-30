@@ -11,7 +11,7 @@ import { AxiosError } from "axios";
 import { useRouter } from "next/router";
 import { CircleNotch, Envelope, Lock } from "phosphor-react";
 import { useState } from "react";
-import { processReponseError } from "@src/utils/process-error";
+import { catchError, processReponseError } from "@src/utils/process-error";
 import { GetServerSideProps } from "next";
 import { parseCookies } from "nookies";
 import { NextSeo } from "next-seo";
@@ -44,10 +44,6 @@ export default function Login() {
     formState: { errors },
   } = useForm<loginType>({
     resolver: zodResolver(LoginFormScrema),
-    defaultValues: {
-      email: "",
-      password: "",
-    },
   });
 
   async function submitEvent(data: loginType) {
@@ -56,11 +52,8 @@ export default function Login() {
       await signIn({ ...data });
       push("/");
     } catch (err) {
-      const { response } = err as typeError;
-      if (response) {
-        const { message } = processReponseError(response.data);
-        setError("email", { message });
-      }
+      const message = catchError(err);
+      setError("email", { message });
     }
     setLoading(false);
   }

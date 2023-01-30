@@ -12,42 +12,41 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/router";
 import { api } from "@src/services/api-client";
 import { useState } from "react";
-import { catchError } from "@src/utils/process-error";
 import { buttonCss } from "@src/pages/@me/components/Config";
+import { useQueryClient } from "react-query";
 
-const createCategorieSchema = z.object({
+const EditCategorieSchema = z.object({
   name: z.string().nonempty({ message: "Este campo é obrigatório." }),
 });
 
-type createCategorieType = z.infer<typeof createCategorieSchema>;
+type EditCategorieType = z.infer<typeof EditCategorieSchema>;
 
 export interface Error {
   message: string;
   statusCode: number;
 }
 
-export default function CreateCategorie({ shopId }: ShopProps) {
+export default function EditCategorie({ shopId }: ShopProps) {
   const { push, query } = useRouter();
+  const queryClient = useQueryClient();
   const [loading, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
     formState: { errors },
     setError,
-  } = useForm<createCategorieType>({
-    resolver: zodResolver(createCategorieSchema),
+  } = useForm<EditCategorieType>({
+    resolver: zodResolver(EditCategorieSchema),
   });
 
-  const submitEvent = async ({ name }: createCategorieType) => {
+  const submitEvent = async ({ name }: EditCategorieType) => {
+    setLoading(true);
     const redict = query.redirect_url as string;
 
     try {
-      setLoading(true);
-      await api.post("/categorie", { name, shop_id: shopId });
+      await api.patch("category", { shop_id: shopId, name, id: query.id });
       if (redict) push(redict);
     } catch (err) {
-      const message = catchError(err);
-      setError("name", { message });
     } finally {
       setLoading(false);
     }
@@ -57,7 +56,7 @@ export default function CreateCategorie({ shopId }: ShopProps) {
     <SideBar path="/catalog" shopId={shopId} overflow={true}>
       <Container>
         <Header>
-          <h1>Criar Categoria</h1>
+          <h1>Editar Categoria</h1>
         </Header>
         <Area onSubmit={handleSubmit(submitEvent)} overflow>
           <section>
@@ -69,6 +68,7 @@ export default function CreateCategorie({ shopId }: ShopProps) {
               <Input.Input
                 type="text"
                 placeholder="Nome da categoria"
+                defaultValue={query.name}
                 {...register("name")}
                 autoFocus
               />

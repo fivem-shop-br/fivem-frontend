@@ -3,13 +3,12 @@ import { scrollStyled } from "@src/styles/global.css";
 
 export const Container = styled("main", {
   display: "flex",
+  height: "100vh",
 });
 
 export const SideBarContainer = styled("aside", {
   minWidth: "290px",
   background: "$gray-800",
-
-  height: "100vh",
 
   overflow: "auto",
   ...scrollStyled,

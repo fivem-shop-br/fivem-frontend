@@ -10,9 +10,10 @@ import { Form, Main } from "../styles.css";
 import { Button } from "@fivem-shop/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CircleNotch, Envelope, Lock } from "phosphor-react";
-import { Register as apiRegister } from "@src/services/api";
 import { NextSeo } from "next-seo";
 import { Layout } from "@src/components/Layout";
+import { catchError } from "@src/utils/process-error";
+import { api } from "@src/services/api-client";
 
 const RegisterFormScrema = z.object({
   name: z.string().nonempty({ message: "Nome não pode ser vazio." }),
@@ -35,17 +36,18 @@ export default function Register() {
     formState: { errors },
   } = useForm<registerType>({
     resolver: zodResolver(RegisterFormScrema),
-    defaultValues: {
-      name: "",
-      email: "",
-      password: "",
-    },
   });
 
   async function submitEvent(data: registerType) {
-    const error = await apiRegister({ data, setLoading });
-    if (error) return setError("email", { message: error });
-    push("/auth/login");
+    setLoading(true);
+    try {
+      await api.post("user", data);
+      push("/auth/login");
+    } catch (err) {
+      const message = catchError(err);
+      setError("email", { message });
+    }
+    setLoading(false);
   }
 
   return (

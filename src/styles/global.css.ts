@@ -1,4 +1,5 @@
 import { globalCss } from "@fivem-shop/react";
+import { loading } from "@src/pages/auth/styles.css";
 
 export const scrollStyled = {
   "&::-webkit-scrollbar": {
@@ -29,6 +30,12 @@ export const globalStyles = globalCss({
     color: "white",
     ...scrollStyled,
     "-webkit-font-smoothing": "antialiased",
+
+    ".loading-animation": {
+      animation: `${loading} 0.5s linear infinite`,
+    },
+
+    "overflow-x": "hidden",
   },
 
   "button, input": {
