@@ -102,7 +102,7 @@ export default function Categories({ shopId }: ShopProps) {
                         </td>
                         <td>
                           {format(
-                            new Date(index.createdAt),
+                            new Date(index.updatedAt),
                             `dd/MM/yyyy 'de' HH:mm`
                           )}
                         </td>

@@ -43,7 +43,7 @@ export default function CreateCategorie({ shopId }: ShopProps) {
 
     try {
       setLoading(true);
-      await api.post("/categorie", { name, shop_id: shopId });
+      await api.post("/category", { name, shop_id: shopId });
       if (redict) push(redict);
     } catch (err) {
       const message = catchError(err);
