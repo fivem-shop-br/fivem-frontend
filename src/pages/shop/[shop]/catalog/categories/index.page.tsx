@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Button } from "@fivem-shop/react";
 import { Tooltip } from "@src/components/Tooltip";
 import { buttonCss } from "@src/pages/@me/components/Config";
@@ -6,7 +7,6 @@ import { api } from "@src/services/api-client";
 import { getCategories } from "@src/services/queries";
 import { format } from "date-fns";
 import { GetServerSideProps } from "next";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { CircleNotch, PencilSimple, Plus, Tag, Trash } from "phosphor-react";
 import { useState } from "react";
@@ -38,14 +38,20 @@ export default function Categories({ shopId }: ShopProps) {
   async function handleDelete(id: string) {
     setLoading(true);
     const deleted = data && data.filter((index) => index.id !== id);
-    queryClient.setQueryData(`categories ${shopId}`, deleted);
 
     try {
-      await api.delete("categorie/" + id);
+      await api.delete("category/" + id);
+      queryClient.setQueryData(`categories ${shopId}`, deleted);
     } catch (err) {
     } finally {
       setLoading(false);
     }
+  }
+
+  function handleEdit(id: string, name: string) {
+    router.push(
+      `${router.asPath}/${name}?redirect_url=${router.asPath}&id=${id}`
+    );
   }
 
   return (
@@ -113,6 +119,7 @@ export default function Categories({ shopId }: ShopProps) {
                                 size={20}
                                 color="#94FF92"
                                 className="icons"
+                                onClick={() => handleEdit(index.id, index.name)}
                               />
                             )}
                           </Tooltip>
