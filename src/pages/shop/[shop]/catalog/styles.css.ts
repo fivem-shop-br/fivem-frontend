@@ -159,3 +159,11 @@ export const Table = styled("table", {
     margin: "0 10px",
   },
 });
+
+export const SearchContainer = styled("main", {
+  display: "flex",
+  flexDirection: "column",
+
+  flex: 1,
+  gap: "5px",
+});

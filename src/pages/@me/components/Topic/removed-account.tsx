@@ -15,14 +15,14 @@ export function RemovedAccount() {
           </p>
         </ul>
         <div>
-          <Button
+          {/* <Button
             mode="primary"
             css={buttonCss}
             backgroundColor="#E8564D"
             hoverColor="#F87168"
           >
             Desativar conta
-          </Button>
+          </Button> */}
           <Button
             mode="primary"
             hoverColor="#E8564D"
