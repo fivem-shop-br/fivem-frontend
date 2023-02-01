@@ -7,9 +7,9 @@ import * as Input from "@fivem-shop/react";
 import { Button } from "@fivem-shop/react";
 import { Barcode, Percent } from "phosphor-react";
 import { buttonCss } from "@src/pages/@me/components/Config";
-export default function Categories({ shopId }: ShopProps) {
+export default function Categories({ shop_slug }: ShopProps) {
   return (
-    <SideBar path="/catalog" shopId={shopId} overflow={true}>
+    <SideBar path="/catalog" shopId={shop_slug} overflow={true}>
       <Container>
         <Header>
           <h1>Criar Cupon</h1>
