@@ -26,7 +26,7 @@ export interface Error {
   statusCode: number;
 }
 
-export default function EditCategorie({ shopId }: ShopProps) {
+export default function EditCategorie({ shop_slug }: ShopProps) {
   const { push, query } = useRouter();
   const queryClient = useQueryClient();
   const [loading, setLoading] = useState(false);
@@ -44,7 +44,7 @@ export default function EditCategorie({ shopId }: ShopProps) {
     const redict = query.redirect_url as string;
 
     try {
-      await api.patch("category", { shop_id: shopId, name, id: query.id });
+      await api.patch("category", { shop_slug, name, id: query.id });
       if (redict) push(redict);
     } catch (err) {
     } finally {
@@ -53,7 +53,7 @@ export default function EditCategorie({ shopId }: ShopProps) {
   };
 
   return (
-    <SideBar path="/catalog" shopId={shopId} overflow={true}>
+    <SideBar path="/catalog" shopId={shop_slug} overflow={true}>
       <Container>
         <Header>
           <h1>Editar Categoria</h1>
@@ -89,7 +89,7 @@ export const getServerSideProps: GetServerSideProps = async ({
 }) => {
   return {
     props: {
-      shopId: shop,
+      shop_slug: shop,
     },
   };
 };

@@ -7,6 +7,7 @@ import { getProducts } from "@src/services/queries";
 import { format } from "date-fns";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
+import * as Input from "@fivem-shop/react";
 import {
   CircleNotch,
   PencilSimple,
@@ -14,14 +15,23 @@ import {
   Tag,
   Trash,
   Package,
+  FileSearch,
+  MagnifyingGlass,
 } from "phosphor-react";
 import React, { useEffect, useState } from "react";
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import { ShopProps } from "../../index.page";
 import { Container } from "../../styled.css";
-import { Area, Header, SearchContainer, Table } from "../styles.css";
-import { CategorieProps } from "../categories/index.page";
+import {
+  Area,
+  Header,
+  Search,
+  SearchContainer,
+  Table,
+  TableImage,
+} from "../styles.css";
 import { SelectCategory } from "./components/select-category";
+import { api } from "@src/services/api-client";
 
 export interface ProductsProps {
   id: string;
@@ -29,29 +39,45 @@ export interface ProductsProps {
   name: string;
   image: string;
   price: number;
-  createdAt?: Date;
-  updatedAt?: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
-export default function Products({ shopId }: ShopProps) {
+export default function Products({ shop_slug }: ShopProps) {
   const [loading, setLoading] = useState<boolean>(false);
-  const [categoryIdSelected, setCategoryIdSelected] = useState<string>();
+  const [categoryIdSelected, setCategoryIdSelected] = useState<string>("none");
   const router = useRouter();
+  const queryClient = useQueryClient();
 
-  const { data, refetch, isLoading } = useQuery<CategorieProps[]>(
-    `products ${shopId}`,
+  const { data, refetch, isLoading } = useQuery<ProductsProps[]>(
+    `products ${shop_slug}`,
     () => {
       if (!categoryIdSelected) return [];
       return getProducts(categoryIdSelected);
     }
   );
 
+  async function handleDelete(id: string) {
+    setLoading(true);
+    const deleted = data && data.filter((index) => index.id !== id);
+
+    try {
+      await api.delete("product/" + id);
+      queryClient.setQueryData(`products ${shop_slug}`, deleted);
+    } catch (err) {
+    } finally {
+      setLoading(false);
+    }
+  }
+
   useEffect(() => {
+    const selectCategory = localStorage.getItem("select_category");
+    if (selectCategory) setCategoryIdSelected(selectCategory);
     refetch();
   }, [categoryIdSelected]);
 
   return (
-    <SideBar path="/catalog" shopId={shopId}>
+    <SideBar path="/catalog" shopId={shop_slug}>
       <Container>
         <Header>
           <h1>Todos Produtos</h1>
@@ -70,10 +96,19 @@ export default function Products({ shopId }: ShopProps) {
           </Button>
         </Header>
         <SearchContainer>
-          <SelectCategory
-            shopId={shopId}
-            setCategoryIdSelected={setCategoryIdSelected}
-          />
+          <Search>
+            <SelectCategory
+              shop_slug={shop_slug}
+              setCategoryIdSelected={setCategoryIdSelected}
+              categoryIdSelected={categoryIdSelected}
+            />
+            <Input.Root>
+              <Input.Icon>
+                <MagnifyingGlass size={22} />
+              </Input.Icon>
+              <Input.Input type="text" placeholder="Pesquisar por produto..." />
+            </Input.Root>
+          </Search>
           <Area table={!isLoading && data && data.length > 0}>
             {isLoading ? (
               <div>
@@ -88,7 +123,9 @@ export default function Products({ shopId }: ShopProps) {
                   <Table>
                     <thead>
                       <tr>
+                        <th>Foto</th>
                         <th>Nome</th>
+                        <th>Preço</th>
                         <th>Criando em</th>
                         <th>Ultima edição</th>
                         <th></th>
@@ -97,7 +134,18 @@ export default function Products({ shopId }: ShopProps) {
                     <tbody>
                       {data.map((index, key) => (
                         <tr key={key}>
+                          <td>
+                            <TableImage
+                              css={{ backgroundImage: `url(${index.image})` }}
+                            />
+                          </td>
                           <td>{index.name}</td>
+                          <td>
+                            {index.price.toLocaleString("pt-br", {
+                              style: "currency",
+                              currency: "BRL",
+                            })}
+                          </td>
                           <td>
                             {format(new Date(index.createdAt), `dd/MM/yyyy`)}
                           </td>
@@ -137,6 +185,9 @@ export default function Products({ shopId }: ShopProps) {
                                   size={20}
                                   color="#ff5448"
                                   className="icons"
+                                  onClick={() =>
+                                    !loading && handleDelete(index.id)
+                                  }
                                 />
                               )}
                             </Tooltip>
@@ -147,7 +198,7 @@ export default function Products({ shopId }: ShopProps) {
                   </Table>
                 ) : (
                   <>
-                    {categoryIdSelected ? (
+                    {categoryIdSelected !== "none" ? (
                       <div>
                         <Package size={50} />
                         <ul>
@@ -182,7 +233,7 @@ export const getServerSideProps: GetServerSideProps = async ({
 }) => {
   return {
     props: {
-      shopId: shop,
+      shop_slug: shop,
     },
   };
 };

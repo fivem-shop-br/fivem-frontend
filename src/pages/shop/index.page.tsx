@@ -32,9 +32,9 @@ export default function Shops() {
       <Container>
         {!isLoading
           ? data &&
-            data.map(({ id, name, domain, logo: image }, key) => (
+            data.map(({ slug, name, domain, logo: image }, key) => (
               <Shop
-                id={id}
+                slug={slug}
                 name={name}
                 domain={domain}
                 image={image!}

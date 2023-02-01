@@ -7,9 +7,9 @@ import * as Input from "@fivem-shop/react";
 import { Button } from "@fivem-shop/react";
 import { CurrencyDollarSimple, FileImage, Package, Tag } from "phosphor-react";
 
-export default function CreateProduct({ shopId }: ShopProps) {
+export default function CreateProduct({ shop_slug }: ShopProps) {
   return (
-    <SideBar path="/catalog" shopId={shopId} overflow={true}>
+    <SideBar path="/catalog" shopId={shop_slug} overflow={true}>
       <Container>
         <Header>
           <h1>Criar Produto</h1>
@@ -72,7 +72,7 @@ export const getServerSideProps: GetServerSideProps = async ({
 }) => {
   return {
     props: {
-      shopId: shop,
+      shop_slug: shop,
     },
   };
 };

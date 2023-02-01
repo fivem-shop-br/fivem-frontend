@@ -4,13 +4,13 @@ import { buttonCss } from "@src/pages/@me/components/Config";
 import { Image, Shop as ShopS } from "../../styled.css";
 
 interface ShopProps {
-  id: string;
+  slug: string;
   name: string;
   domain: string;
   image: string;
 }
 
-export function Shop({ id, name, domain, image }: ShopProps) {
+export function Shop({ slug, name, domain, image }: ShopProps) {
   const ImageStyle = {
     backgroundImage: `url(${image})`,
   };
@@ -29,7 +29,7 @@ export function Shop({ id, name, domain, image }: ShopProps) {
         css={{ ...buttonCss, textDecoration: "none" }}
         asChild
       >
-        <Link href={`shop/${id}`}>Gerenciar</Link>
+        <Link href={`shop/${slug}`}>Gerenciar</Link>
       </Button>
     </ShopS>
   );

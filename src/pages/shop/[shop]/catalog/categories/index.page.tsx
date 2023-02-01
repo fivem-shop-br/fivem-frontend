@@ -23,15 +23,15 @@ export interface CategorieProps {
   updatedAt: Date;
 }
 
-export default function Categories({ shopId }: ShopProps) {
+export default function Categories({ shop_slug }: ShopProps) {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const queryClient = useQueryClient();
 
   const { data, isLoading } = useQuery<CategorieProps[]>(
-    `categories ${shopId}`,
+    `categories ${shop_slug}`,
     () => {
-      return getCategories(shopId);
+      return getCategories(shop_slug);
     }
   );
 
@@ -41,7 +41,7 @@ export default function Categories({ shopId }: ShopProps) {
 
     try {
       await api.delete("category/" + id);
-      queryClient.setQueryData(`categories ${shopId}`, deleted);
+      queryClient.setQueryData(`categories ${shop_slug}`, deleted);
     } catch (err) {
     } finally {
       setLoading(false);
@@ -55,7 +55,7 @@ export default function Categories({ shopId }: ShopProps) {
   }
 
   return (
-    <SideBar path="/catalog" shopId={shopId}>
+    <SideBar path="/catalog" shopId={shop_slug}>
       <Container>
         <Header>
           <h1>Todas Categorias</h1>
@@ -169,7 +169,7 @@ export const getServerSideProps: GetServerSideProps = async ({
 }) => {
   return {
     props: {
-      shopId: shop,
+      shop_slug: shop,
     },
   };
 };

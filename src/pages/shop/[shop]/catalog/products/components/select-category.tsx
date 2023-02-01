@@ -6,28 +6,35 @@ import { ShopProps } from "../../../index.page";
 import { CategorieProps } from "../../categories/index.page";
 
 interface SelectCategoryProps extends ShopProps {
+  categoryIdSelected: string;
   setCategoryIdSelected: (value: string) => void;
 }
 
 export function SelectCategory({
-  shopId,
+  shop_slug,
   setCategoryIdSelected,
+  categoryIdSelected,
 }: SelectCategoryProps) {
-  const { data, isLoading } = useQuery<CategorieProps[]>(
-    `categories ${shopId}`,
-    () => {
-      return getCategories(shopId);
-    }
-  );
+  const { data } = useQuery<CategorieProps[]>(`categories ${shop_slug}`, () => {
+    return getCategories(shop_slug);
+  });
+
+  function handleSelectCategory(value: string) {
+    setCategoryIdSelected(value);
+    localStorage.setItem("select_category", value);
+  }
 
   return (
-    <Select.Root onValueChange={setCategoryIdSelected}>
+    <SelectRoot onValueChange={handleSelectCategory} value={categoryIdSelected}>
       <SelectTrigger>
         <Select.Value placeholder="Selecione uma categoria..." />
       </SelectTrigger>
       <Select.Portal>
-        <SelectContent>
+        <SelectContent position="popper" align="center">
           <SelectViewport>
+            <StyledItem value="none">
+              <Select.ItemText>Selecione uma categoria...</Select.ItemText>
+            </StyledItem>
             {data &&
               data.map((index, key) => (
                 <StyledItem value={index.id} key={key}>
@@ -37,9 +44,13 @@ export function SelectCategory({
           </SelectViewport>
         </SelectContent>
       </Select.Portal>
-    </Select.Root>
+    </SelectRoot>
   );
 }
+
+const SelectRoot = styled(Select.Root, {
+  flex: 1,
+});
 
 const SelectTrigger = styled(Select.SelectTrigger, {
   all: "unset",
