@@ -9,10 +9,10 @@ import { ShopProps } from "../../index.page";
 import { Container } from "../../styled.css";
 import { Area, Header } from "../styles.css";
 
-export default function CreateCoupons({ shopId }: ShopProps) {
+export default function CreateCoupons({ shop_slug }: ShopProps) {
   const router = useRouter();
   return (
-    <SideBar path="/catalog" shopId={shopId}>
+    <SideBar path="/catalog" shopId={shop_slug}>
       <Container>
         <Header>
           <h1>Todos Cupons</h1>
