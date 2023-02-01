@@ -57,7 +57,7 @@ const SelectTrigger = styled(Select.SelectTrigger, {
   display: "inline-flex",
   alignItems: "center",
   justifyContent: "center",
-  borderRadius: 4,
+  borderRadius: 5,
   padding: "0 15px",
   fontSize: 13,
   lineHeight: 1,
@@ -72,7 +72,7 @@ const SelectTrigger = styled(Select.SelectTrigger, {
 const SelectContent = styled(Select.Content, {
   overflow: "hidden",
   backgroundColor: "$gray-700",
-  borderRadius: 6,
+  borderRadius: 5,
   boxShadow:
     "0px 10px 38px -10px rgba(22, 23, 24, 0.35), 0px 10px 20px -15px rgba(22, 23, 24, 0.2)",
 });

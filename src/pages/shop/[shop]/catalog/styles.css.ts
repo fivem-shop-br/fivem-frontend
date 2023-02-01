@@ -81,7 +81,7 @@ export const Area = styled("form", {
             color: "white",
           },
 
-          span: {
+          "> span": {
             color: "#ff7373",
           },
         },
@@ -105,6 +105,8 @@ export const Inputs = styled("div", {
 
   section: {
     flex: 1,
+    display: "flex",
+    flexDirection: "column",
   },
 });
 
