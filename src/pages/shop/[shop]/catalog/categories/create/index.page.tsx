@@ -26,7 +26,7 @@ export interface Error {
   statusCode: number;
 }
 
-export default function CreateCategorie({ shopId }: ShopProps) {
+export default function CreateCategorie({ shop_slug }: ShopProps) {
   const { push, query } = useRouter();
   const [loading, setLoading] = useState(false);
   const {
@@ -43,7 +43,7 @@ export default function CreateCategorie({ shopId }: ShopProps) {
 
     try {
       setLoading(true);
-      await api.post("/categorie", { name, shop_id: shopId });
+      await api.post("/category", { name, shop_slug });
       if (redict) push(redict);
     } catch (err) {
       const message = catchError(err);
@@ -54,7 +54,7 @@ export default function CreateCategorie({ shopId }: ShopProps) {
   };
 
   return (
-    <SideBar path="/catalog" shopId={shopId} overflow={true}>
+    <SideBar path="/catalog" shopId={shop_slug} overflow={true}>
       <Container>
         <Header>
           <h1>Criar Categoria</h1>
@@ -89,7 +89,7 @@ export const getServerSideProps: GetServerSideProps = async ({
 }) => {
   return {
     props: {
-      shopId: shop,
+      shop_slug: shop,
     },
   };
 };

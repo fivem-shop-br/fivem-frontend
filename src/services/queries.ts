@@ -52,3 +52,16 @@ export async function getCategories(shopId: string) {
   }
   return null;
 }
+
+export async function getProducts(categoryId: string) {
+  const cookie = parseCookies();
+  if (cookie["fivem-shop.token"]) {
+    try {
+      const { data } = await api.get("products/" + categoryId);
+      return data;
+    } catch (err) {
+      throw new Error("Servidor não encontrado.");
+    }
+  }
+  return null;
+}

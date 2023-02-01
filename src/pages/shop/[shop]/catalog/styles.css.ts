@@ -159,3 +159,44 @@ export const Table = styled("table", {
     margin: "0 10px",
   },
 });
+
+export const SearchContainer = styled("main", {
+  display: "flex",
+  flexDirection: "column",
+
+  flex: 1,
+
+  "overflow-y": "auto",
+  ...scrollStyled,
+
+  gap: "5px",
+});
+
+export const TableImage = styled("div", {
+  width: "50px",
+  height: "50px",
+  background: "#2D3439",
+
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+});
+
+export const Search = styled("section", {
+  display: "flex",
+  gap: "10px",
+
+  button: {
+    flex: 1,
+    height: "100%",
+    maxWidth: "200px",
+  },
+
+  div: {
+    flex: 1,
+
+    maxWidth: "none",
+    input: {
+      padding: "10px 10px 10px 0px",
+    },
+  },
+});

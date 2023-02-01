@@ -19,13 +19,12 @@ import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { useQueryClient } from "react-query";
 import { api } from "@src/services/api-client";
+import { convertBase64 } from "@src/utils/convert-base64";
 const editProfileSChema = z.object({
   name: z.string().nonempty({ message: "Nome completo é obrigatório" }),
 });
 
-interface editProfileProps extends z.infer<typeof editProfileSChema> {
-  image: File;
-}
+type editProfileType = z.infer<typeof editProfileSChema>;
 
 export function EditProfile() {
   const { user } = useAuth();
@@ -38,7 +37,7 @@ export function EditProfile() {
     watch,
     setValue,
     formState: { errors },
-  } = useForm<editProfileProps>({
+  } = useForm<editProfileType>({
     resolver: zodResolver(editProfileSChema),
     defaultValues: {
       name: user?.name,
@@ -54,13 +53,21 @@ export function EditProfile() {
     backgroundImage: `url(${user?.image ? user?.image : PerfilI.src})`,
   };
 
-  const submitEvent = ({ name, image }: editProfileProps) => {
-    console.log(image);
-
+  const submitEvent = ({ name }: editProfileType) => {
     api.patch("/me", { name });
     queryClient.setQueryData("me", { ...user, name });
 
     setIsOpenDialog(false);
+  };
+
+  const handleImage = async ({
+    target,
+  }: React.ChangeEvent<HTMLInputElement>) => {
+    const file = target.files;
+
+    if (file?.length) {
+      const image = await convertBase64(file[0]);
+    }
   };
 
   return (
@@ -93,7 +100,12 @@ export function EditProfile() {
                 </Dialog.Close>
               </DialogHeader>
               <DialogProfile css={ImageStyle}>
-                <input type="file" id="uploadFile" {...register("image")} />
+                <input
+                  type="file"
+                  id="uploadFile"
+                  multiple={false}
+                  onChange={handleImage}
+                />
                 <label htmlFor="uploadFile" />
                 <section>
                   <div>

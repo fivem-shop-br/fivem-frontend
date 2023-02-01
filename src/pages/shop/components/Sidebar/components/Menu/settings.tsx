@@ -41,11 +41,11 @@ export const menuItems = [
         name: "Produtos",
         Icon: (props: IconProps) => <Package {...props} />,
       },
-      {
+      /* {
         path: "/coupons",
         name: "Cupons",
         Icon: (props: IconProps) => <Ticket {...props} />,
-      },
+      }, */
     ],
   },
   {

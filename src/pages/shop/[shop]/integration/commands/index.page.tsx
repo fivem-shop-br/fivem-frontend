@@ -21,7 +21,7 @@ interface messageProps {
   command: string;
 }
 
-export default function Commands({ shopId }: ShopProps) {
+export default function Commands({ shop_slug }: ShopProps) {
   const socket = connectedWs("1");
   const [commands, setCommands] = useState<messageProps[]>([]);
   const [command, setCommand] = useState("");
@@ -40,7 +40,7 @@ export default function Commands({ shopId }: ShopProps) {
   };
 
   return (
-    <SideBar path="/integration" shopId={shopId}>
+    <SideBar path="/integration" shopId={shop_slug}>
       <Container>
         <Header>
           <h1>Executar Comandos</h1>
@@ -80,7 +80,7 @@ export const getServerSideProps: GetServerSideProps = async ({
 }) => {
   return {
     props: {
-      shopId: shop,
+      shop_slug: shop,
     },
   };
 };

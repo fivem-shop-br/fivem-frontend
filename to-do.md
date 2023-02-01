@@ -4,3 +4,8 @@
 
 # Features
 [ ] Speculate image in slide home.
+
+# TO-DO
+[ ] Change Password - @Me
+[ ] Verify Email - @Me
+[ ] Delete Account - @Me

@@ -6,14 +6,14 @@ import { ClipboardText, Tag } from "phosphor-react";
 import { GetServerSideProps } from "next";
 
 export interface ShopProps {
-  shopId: string;
+  shop_slug: string;
 }
 
-export default function Shop({ shopId }: ShopProps) {
+export default function Shop({ shop_slug }: ShopProps) {
   const { user } = useAuth();
 
   return (
-    <SideBar shopId={shopId}>
+    <SideBar shopId={shop_slug}>
       <Container>
         <ul>
           <Skeleton state={user?.name} width="500px" height="40px">
@@ -95,7 +95,7 @@ export const getServerSideProps: GetServerSideProps = async ({
 }) => {
   return {
     props: {
-      shopId: shop,
+      shop_slug: shop,
     },
   };
 };
