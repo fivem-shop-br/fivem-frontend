@@ -2,6 +2,8 @@ import { styled } from "@fivem-shop/react";
 import { loading } from "@src/pages/auth/styles.css";
 import { scrollStyled } from "@src/styles/global.css";
 
+import { Table as TableT } from "react-super-responsive-table";
+
 export const Container = styled("main", {
   flex: 1,
   display: "flex",
@@ -18,6 +20,16 @@ export const Header = styled("header", {
     fontWeight: "400",
     fontSize: "$heading-small",
     lineHeight: "130%",
+  },
+
+  "@media (max-width: 768px)": {
+    gap: "10px",
+
+    h1: {
+      fontSize: "$heading-ultra-small",
+    },
+
+    flexDirection: "column",
   },
 });
 
@@ -133,7 +145,7 @@ export const InputFile = styled("section", {
   },
 });
 
-export const Table = styled("table", {
+export const Table = styled(TableT, {
   width: "100%",
   borderCollapse: "collapse",
 

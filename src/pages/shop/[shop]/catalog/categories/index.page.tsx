@@ -15,6 +15,9 @@ import { ShopProps } from "../../index.page";
 import { Container } from "../../styled.css";
 import { Area, Header, Table } from "../styles.css";
 
+import { Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
+import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
+
 export interface CategorieProps {
   id: string;
   shop_slug: string;
@@ -85,29 +88,29 @@ export default function Categories({ shop_slug }: ShopProps) {
             <>
               {data && data.length ? (
                 <Table>
-                  <thead>
-                    <tr>
-                      <th>Nome</th>
-                      <th>Criando em</th>
-                      <th>Ultima edição</th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody>
+                  <Thead>
+                    <Tr>
+                      <Th>Nome</Th>
+                      <Th>Criando em</Th>
+                      <Th>Ultima edição</Th>
+                      <Th></Th>
+                    </Tr>
+                  </Thead>
+                  <Tbody>
                     {data.map((index, key) => (
-                      <tr key={key}>
-                        <td>{index.name}</td>
-                        <td>
+                      <Tr key={key}>
+                        <Td>{index.name}</Td>
+                        <Td>
                           {format(new Date(index.createdAt), `dd/MM/yyyy`)}
-                        </td>
-                        <td>
+                        </Td>
+                        <Td>
                           {format(
                             new Date(index.updatedAt),
                             `dd/MM/yyyy 'de' HH:mm`
                           )}
-                        </td>
-                        <td></td>
-                        <td>
+                        </Td>
+                        <Td></Td>
+                        <Td>
                           <Tooltip content="Editar">
                             {loading ? (
                               <CircleNotch
@@ -140,10 +143,10 @@ export default function Categories({ shop_slug }: ShopProps) {
                               />
                             )}
                           </Tooltip>
-                        </td>
-                      </tr>
+                        </Td>
+                      </Tr>
                     ))}
-                  </tbody>
+                  </Tbody>
                 </Table>
               ) : (
                 <div>

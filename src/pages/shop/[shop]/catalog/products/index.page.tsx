@@ -51,7 +51,7 @@ export default function Products({ shop_slug }: ShopProps) {
   const { data, refetch, isLoading } = useQuery<ProductsProps[]>(
     `products ${shop_slug}`,
     () => {
-      if (!categoryIdSelected) return [];
+      if (categoryIdSelected === "none") return [];
       return getProducts(categoryIdSelected);
     }
   );

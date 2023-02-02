@@ -10,6 +10,10 @@ export const SideBarContainer = styled("aside", {
   minWidth: "290px",
   background: "$gray-800",
 
+  "@media (max-width: 992px)": {
+    display: "none",
+  },
+
   overflow: "auto",
   ...scrollStyled,
 });

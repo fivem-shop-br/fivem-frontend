@@ -17,7 +17,7 @@ import { useRouter } from "next/router";
 
 const createProductSchema = z.object({
   name: z.string().nonempty({ message: "Este campo é obrigatório." }),
-  price: z.string().nonempty({ message: "Este campo é obrigatório." }),
+  price: z.number(),
 });
 
 type createProductType = z.infer<typeof createProductSchema>;
@@ -35,12 +35,16 @@ export default function CreateProduct({ shop_slug }: ShopProps) {
     resolver: zodResolver(createProductSchema),
   });
 
-  const submitEvent = async ({ name }: createProductType) => {
+  const submitEvent = async ({ name, price }: createProductType) => {
     const redict = query.redirect_url as string;
 
     try {
       setLoading(true);
-      await api.post("/category", { name, shop_slug });
+      await api.post("/product", {
+        category_id: categoryIdSelected,
+        name,
+        price,
+      });
       if (redict) push(redict);
     } catch (err) {
       const message = catchError(err);
@@ -87,9 +91,9 @@ export default function CreateProduct({ shop_slug }: ShopProps) {
                   <CurrencyDollarSimple size={22} />
                 </Input.Icon>
                 <Input.Input
-                  type="text"
+                  type="number"
                   placeholder="Preço do produto"
-                  {...register("price")}
+                  {...register("price", { valueAsNumber: true })}
                 />
               </Input.Root>
               <span>{errors && errors.price?.message}</span>
