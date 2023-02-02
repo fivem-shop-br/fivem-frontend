@@ -102,7 +102,7 @@ export default function Products({ shop_slug }: ShopProps) {
               categoryIdSelected={categoryIdSelected}
             />
             <Input.Root>
-              <Input.Icon>
+              <Input.Icon position="left">
                 <MagnifyingGlass size={22} />
               </Input.Icon>
               <Input.Input type="text" placeholder="Pesquisar por produto..." />

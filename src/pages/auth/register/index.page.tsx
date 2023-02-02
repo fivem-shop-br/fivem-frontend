@@ -60,7 +60,7 @@ export default function Register() {
           <section>
             <label>Nome</label>
             <Input.Root>
-              <Input.Icon>
+              <Input.Icon position="left">
                 <Envelope size={22} />
               </Input.Icon>
               <Input.Input
@@ -76,7 +76,7 @@ export default function Register() {
           <section>
             <label>Email</label>
             <Input.Root>
-              <Input.Icon>
+              <Input.Icon position="left">
                 <Envelope size={22} />
               </Input.Icon>
               <Input.Input
@@ -92,7 +92,7 @@ export default function Register() {
           <section>
             <label>Senha</label>
             <Input.Root>
-              <Input.Icon>
+              <Input.Icon position="left">
                 <Lock size={22} />
               </Input.Icon>
               <Input.Input

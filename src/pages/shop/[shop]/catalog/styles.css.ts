@@ -205,7 +205,7 @@ export const Search = styled("section", {
     maxWidth: "200px",
   },
 
-  div: {
+  "> div": {
     flex: 1,
 
     maxWidth: "none",

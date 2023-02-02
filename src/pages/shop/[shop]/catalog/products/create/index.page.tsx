@@ -73,7 +73,7 @@ export default function CreateProduct({ shop_slug }: ShopProps) {
             <section>
               <label>Nome</label>
               <Input.Root>
-                <Input.Icon>
+                <Input.Icon position="left">
                   <Package size={22} />
                 </Input.Icon>
                 <Input.Input
@@ -87,7 +87,7 @@ export default function CreateProduct({ shop_slug }: ShopProps) {
             <section>
               <label>Preço</label>
               <Input.Root>
-                <Input.Icon>
+                <Input.Icon position="left">
                   <CurrencyDollarSimple size={22} />
                 </Input.Icon>
                 <Input.Input

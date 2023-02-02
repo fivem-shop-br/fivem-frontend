@@ -63,7 +63,7 @@ export default function CreateCategorie({ shop_slug }: ShopProps) {
           <section>
             <label>Nome</label>
             <Input.Root>
-              <Input.Icon>
+              <Input.Icon position="left">
                 <Tag size={22} />
               </Input.Icon>
               <Input.Input

@@ -7,6 +7,7 @@ export const Container = styled("main", {
 });
 
 export const SideBarContainer = styled("aside", {
+  userSelect: "none",
   minWidth: "290px",
   background: "$gray-800",
 
