@@ -61,7 +61,8 @@ export function EditProfile() {
     const upload = { name, image };
     await api.patch("/me", upload);
 
-    queryClient.setQueryData("me", { ...user, ...upload });
+    const removeUndefined = JSON.parse(JSON.stringify(upload));
+    queryClient.setQueryData("me", { ...user, ...removeUndefined });
     setIsOpenDialog(false);
   };
 
