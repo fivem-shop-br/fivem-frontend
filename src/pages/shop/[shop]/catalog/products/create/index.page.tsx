@@ -17,7 +17,9 @@ import { useRouter } from "next/router";
 
 const createProductSchema = z.object({
   name: z.string().nonempty({ message: "Este campo é obrigatório." }),
-  price: z.number(),
+  price: z
+    .number()
+    .nonnegative({ message: "Este campo não pode ser negativo." }),
 });
 
 type createProductType = z.infer<typeof createProductSchema>;
