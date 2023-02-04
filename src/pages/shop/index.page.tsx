@@ -8,17 +8,17 @@ import { Container } from "./styled.css";
 
 export interface ShopsProps {
   id: string;
-  owner_id: string;
+  ownerId: string;
   slug: string;
   name: string;
   description?: string;
   logo?: string;
   banner?: string;
   favicon?: string;
-  primary_color?: string;
-  secondary_color?: string;
+  primaryColor?: string;
+  secondaryColor?: string;
   domain: string;
-  plan: string;
+  planType: string;
   createdAt: Date;
   updatedAt: Date;
 }

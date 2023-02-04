@@ -10,7 +10,7 @@ import { CircleNotch, Tag } from "phosphor-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/router";
-import { api } from "@src/services/api-client";
+import { api, apiShop } from "@src/services/api-client";
 import { useState } from "react";
 import { catchError } from "@src/utils/process-error";
 import { buttonCss } from "@src/pages/@me/components/Config";
@@ -43,7 +43,7 @@ export default function CreateCategorie({ shop_slug }: ShopProps) {
 
     try {
       setLoading(true);
-      await api.post("/category", { name, shop_slug });
+      await apiShop(shop_slug).post("/category", { name, shopSlug: shop_slug });
       if (redict) push(redict);
     } catch (err) {
       const message = catchError(err);
