@@ -45,6 +45,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   function signOut() {
     destroyCookie(undefined, "fivem-shop.token");
+    api.defaults.headers["Authorization"] = "";
     refetch();
   }
 
