@@ -122,8 +122,18 @@ export const Inputs = styled("div", {
   },
 });
 
+export const UploadFile = styled("div", {
+  display: "flex",
+  flexDirection: "row",
+
+  gap: "10px",
+
+  alignItems: "center",
+});
+
 export const InputFile = styled("section", {
   maxWidth: "92px",
+  flex: "none",
 
   position: "relative",
 
@@ -135,14 +145,30 @@ export const InputFile = styled("section", {
   "label:nth-child(2)": {
     background: "$gray-700",
     border: "1px solid $gray-700",
-    padding: "30px",
+    padding: "13px 30px",
 
     borderRadius: "5px",
 
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    flexDirection: "column",
+
+    textAlign: "center",
+    fontSize: "10px",
   },
+
+  "> div": {
+    display: "flex",
+    gap: "10px",
+  },
+});
+
+export const CreatedImage = styled("data", {
+  width: "92px",
+  height: "92px",
+  border: "1px solid $gray-700",
+  borderRadius: "5px",
 });
 
 export const Table = styled(TableT, {

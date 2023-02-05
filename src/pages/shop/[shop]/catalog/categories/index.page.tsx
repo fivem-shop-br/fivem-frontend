@@ -3,7 +3,7 @@ import { Button } from "@fivem-shop/react";
 import { Tooltip } from "@src/components/Tooltip";
 import { buttonCss } from "@src/pages/@me/components/Config";
 import { SideBar } from "@src/pages/shop/components/Sidebar";
-import { api, apiShop } from "@src/services/api-client";
+import { apiShop } from "@src/services/api-client";
 import { getCategories } from "@src/services/queries";
 import { format } from "date-fns";
 import { GetServerSideProps } from "next";
@@ -16,7 +16,6 @@ import { Container } from "../../styled.css";
 import { Area, Header, Table } from "../styles.css";
 
 import { Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
-import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
 import { catchError } from "@src/utils/process-error";
 import { Toast } from "@src/components/Toast";
 
@@ -115,7 +114,6 @@ export default function Categories({ shop_slug }: ShopProps) {
                               `dd/MM/yyyy 'de' HH:mm`
                             )}
                           </Td>
-                          <Td></Td>
                           <Td>
                             <Tooltip content="Editar">
                               {loading ? (

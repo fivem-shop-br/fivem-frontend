@@ -10,8 +10,9 @@ import { queryClient } from "@src/services/query-client";
 
 import { start, done } from "nprogress";
 
-import "react-loading-skeleton/dist/skeleton.css";
 import "aos/dist/aos.css";
+import "react-loading-skeleton/dist/skeleton.css";
+import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
 
 globalStyles();

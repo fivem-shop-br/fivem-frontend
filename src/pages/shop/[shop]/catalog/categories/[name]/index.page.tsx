@@ -14,6 +14,7 @@ import { api } from "@src/services/api-client";
 import { useState } from "react";
 import { buttonCss } from "@src/pages/@me/components/Config";
 import { useQueryClient } from "react-query";
+import { catchError } from "@src/utils/process-error";
 
 const EditCategorieSchema = z.object({
   name: z.string().nonempty({ message: "Este campo é obrigatório." }),
@@ -44,9 +45,11 @@ export default function EditCategorie({ shop_slug }: ShopProps) {
     const redict = query.redirect_url as string;
 
     try {
-      await api.patch("category", { shop_slug, name, id: query.id });
+      await api.patch("category", { shopSlug: shop_slug, name, id: query.id });
       if (redict) push(redict);
     } catch (err) {
+      const message = catchError(err);
+      setError("name", { message });
     } finally {
       setLoading(false);
     }
