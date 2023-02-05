@@ -31,12 +31,13 @@ import {
 } from "../styles.css";
 import { SelectCategory } from "./components/select-category";
 import { api } from "@src/services/api-client";
+import { Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
 
 export interface ProductsProps {
   id: string;
   category_id: string;
   name: string;
-  image: string;
+  image: string[];
   price: number;
   createdAt: Date;
   updatedAt: Date;
@@ -120,42 +121,43 @@ export default function Products({ shop_slug }: ShopProps) {
               <>
                 {data && data.length ? (
                   <Table>
-                    <thead>
-                      <tr>
-                        <th>Foto</th>
-                        <th>Nome</th>
-                        <th>Preço</th>
-                        <th>Criando em</th>
-                        <th>Ultima edição</th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
+                    <Thead>
+                      <Tr>
+                        <Th>Foto</Th>
+                        <Th>Nome</Th>
+                        <Th>Preço</Th>
+                        <Th>Criando em</Th>
+                        <Th>Ultima edição</Th>
+                        <Th></Th>
+                      </Tr>
+                    </Thead>
+                    <Tbody>
                       {data.map((index, key) => (
-                        <tr key={key}>
-                          <td>
+                        <Tr key={key}>
+                          <Td>
                             <TableImage
-                              css={{ backgroundImage: `url(${index.image})` }}
+                              css={{
+                                backgroundImage: `url(${index.image[0]})`,
+                              }}
                             />
-                          </td>
-                          <td>{index.name}</td>
-                          <td>
+                          </Td>
+                          <Td>{index.name}</Td>
+                          <Td>
                             {index.price.toLocaleString("pt-br", {
                               style: "currency",
                               currency: "BRL",
                             })}
-                          </td>
-                          <td>
+                          </Td>
+                          <Td>
                             {format(new Date(index.createdAt), `dd/MM/yyyy`)}
-                          </td>
-                          <td>
+                          </Td>
+                          <Td>
                             {format(
                               new Date(index.updatedAt),
                               `dd/MM/yyyy 'de' HH:mm`
                             )}
-                          </td>
-                          <td></td>
-                          <td>
+                          </Td>
+                          <Td>
                             <Tooltip content="Editar">
                               {loading ? (
                                 <CircleNotch
@@ -190,10 +192,10 @@ export default function Products({ shop_slug }: ShopProps) {
                                 />
                               )}
                             </Tooltip>
-                          </td>
-                        </tr>
+                          </Td>
+                        </Tr>
                       ))}
-                    </tbody>
+                    </Tbody>
                   </Table>
                 ) : (
                   <>
