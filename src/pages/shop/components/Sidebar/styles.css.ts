@@ -7,8 +7,13 @@ export const Container = styled("main", {
 });
 
 export const SideBarContainer = styled("aside", {
+  userSelect: "none",
   minWidth: "290px",
   background: "$gray-800",
+
+  "@media (max-width: 992px)": {
+    display: "none",
+  },
 
   overflow: "auto",
   ...scrollStyled,

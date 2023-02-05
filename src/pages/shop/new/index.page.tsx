@@ -21,7 +21,7 @@ export default function New() {
               Nome <span>*</span>
             </label>
             <Input.Root>
-              <Input.Icon>
+              <Input.Icon position="left">
                 <ShoppingCartSimple size={22} />
               </Input.Icon>
               <Input.Input

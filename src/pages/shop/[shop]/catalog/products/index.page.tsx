@@ -15,7 +15,6 @@ import {
   Tag,
   Trash,
   Package,
-  FileSearch,
   MagnifyingGlass,
 } from "phosphor-react";
 import React, { useEffect, useState } from "react";
@@ -52,7 +51,7 @@ export default function Products({ shop_slug }: ShopProps) {
   const { data, refetch, isLoading } = useQuery<ProductsProps[]>(
     `products ${shop_slug}`,
     () => {
-      if (!categoryIdSelected) return [];
+      if (categoryIdSelected === "none") return [];
       return getProducts(categoryIdSelected);
     }
   );
@@ -91,7 +90,7 @@ export default function Products({ shop_slug }: ShopProps) {
               href={`${router.asPath}/create?redirect_url=${router.asPath}`}
             >
               <Plus weight="bold" size={22} />
-              Adicionar Categoria
+              Adicionar Produto
             </Link>
           </Button>
         </Header>
@@ -103,7 +102,7 @@ export default function Products({ shop_slug }: ShopProps) {
               categoryIdSelected={categoryIdSelected}
             />
             <Input.Root>
-              <Input.Icon>
+              <Input.Icon position="left">
                 <MagnifyingGlass size={22} />
               </Input.Icon>
               <Input.Input type="text" placeholder="Pesquisar por produto..." />

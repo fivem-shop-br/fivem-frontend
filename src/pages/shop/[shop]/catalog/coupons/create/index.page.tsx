@@ -19,7 +19,7 @@ export default function Categories({ shop_slug }: ShopProps) {
             <section>
               <label>Código</label>
               <Input.Root>
-                <Input.Icon>
+                <Input.Icon position="left">
                   <Barcode size={22} />
                 </Input.Icon>
                 <Input.Input
@@ -32,7 +32,7 @@ export default function Categories({ shop_slug }: ShopProps) {
             <section>
               <label>Valor (%)</label>
               <Input.Root>
-                <Input.Icon>
+                <Input.Icon position="left">
                   <Percent size={22} />
                 </Input.Icon>
                 <Input.Input type="text" placeholder="Valor em porcentagem" />

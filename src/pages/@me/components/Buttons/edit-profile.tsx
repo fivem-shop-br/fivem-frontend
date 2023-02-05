@@ -12,14 +12,13 @@ import {
   DialogOverlay,
   DialogProfile,
 } from "./styled.css";
-import { Plus, X } from "phosphor-react";
+import { CircleNotch, Plus, X } from "phosphor-react";
 import { useAuth } from "@src/hooks/useAuth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { useQueryClient } from "react-query";
 import { api } from "@src/services/api-client";
-import { convertBase64 } from "@src/utils/convert-base64";
 const editProfileSChema = z.object({
   name: z.string().nonempty({ message: "Nome completo é obrigatório" }),
 });
@@ -28,8 +27,10 @@ type editProfileType = z.infer<typeof editProfileSChema>;
 
 export function EditProfile() {
   const { user } = useAuth();
-  const queryClient = useQueryClient();
+  const [imageProfile, setImageProfile] = useState();
   const [isOpenDialog, setIsOpenDialog] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const queryClient = useQueryClient();
 
   const {
     register,
@@ -49,25 +50,37 @@ export function EditProfile() {
   }, [user?.name]);
 
   const name = watch("name");
-  const ImageStyle = {
-    backgroundImage: `url(${user?.image ? user?.image : PerfilI.src})`,
+  let ImageStyle = {
+    backgroundImage: `url(${
+      imageProfile ? imageProfile : user?.image ? user?.image : PerfilI.src
+    })`,
   };
 
-  const submitEvent = ({ name }: editProfileType) => {
-    api.patch("/me", { name });
-    queryClient.setQueryData("me", { ...user, name });
+  const submitEvent = async ({ name }: editProfileType) => {
+    const image = imageProfile && imageProfile;
+    const upload = { name, image };
+    await api.patch("/me", upload);
 
+    const removeUndefined = JSON.parse(JSON.stringify(upload));
+    queryClient.setQueryData("me", { ...user, ...removeUndefined });
     setIsOpenDialog(false);
   };
 
   const handleImage = async ({
     target,
   }: React.ChangeEvent<HTMLInputElement>) => {
-    const file = target.files;
+    if (!target.files?.length) return;
+    const formData = new FormData();
+    formData.append("file", target.files[0]);
 
-    if (file?.length) {
-      const image = await convertBase64(file[0]);
+    setLoading(true);
+    try {
+      const upload = await api.post("/upload", formData);
+      setImageProfile(upload.data.url);
+    } catch (e) {
+      console.log(e);
     }
+    setLoading(false);
   };
 
   return (
@@ -103,13 +116,21 @@ export function EditProfile() {
                 <input
                   type="file"
                   id="uploadFile"
-                  multiple={false}
                   onChange={handleImage}
+                  multiple
                 />
                 <label htmlFor="uploadFile" />
                 <section>
                   <div>
-                    <Plus weight="bold" color="#000" />
+                    {loading ? (
+                      <CircleNotch
+                        weight="bold"
+                        color="#000"
+                        className="loading-animation"
+                      />
+                    ) : (
+                      <Plus weight="bold" color="#000" />
+                    )}
                   </div>
                 </section>
               </DialogProfile>
@@ -147,12 +168,12 @@ export function EditProfile() {
                   Cancelar
                 </Button>
               </Dialog.Close>
-              <Button
-                mode="primary"
-                css={buttonCss}
-                disabled={name === user?.name || !name}
-              >
-                Atualizar
+              <Button mode="primary" css={buttonCss} disabled={loading}>
+                {loading ? (
+                  <CircleNotch size={21} className="loading-animation" />
+                ) : (
+                  "Atualizar"
+                )}
               </Button>
             </DialogFooter>
           </form>
