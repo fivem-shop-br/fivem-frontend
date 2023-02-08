@@ -6,14 +6,15 @@
 [ ] Speculate image in slide home.
 
 # TO-DO
-[x] Change Profile - @Me
+[x] Change Profile (Name, Picture)- @Me
 [ ] Change Password - @Me
 [ ] Verify Email - @Me
 [ ] Delete Account - @Me
 
 # Dashboard/Product
+[x] Find Products
 [ ] Edit Products
-[ ] Find Products
+[ ] Delete Image and Update
 
 # Dashboard/Config
 [ ] Theme
@@ -34,3 +35,6 @@
 [ ] Payment Methods
 [ ] Finish Payment
 [ ] Ckeckout Payment
+
+# Dashboard
+[ ] Add Users (Create, delete and update)
