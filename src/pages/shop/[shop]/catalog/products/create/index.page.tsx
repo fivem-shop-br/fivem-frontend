@@ -18,6 +18,7 @@ import {
   CurrencyDollarSimple,
   FileImage,
   Package,
+  X,
 } from "phosphor-react";
 import { SelectCategory } from "../components/select-category";
 import { useState } from "react";
@@ -41,7 +42,9 @@ export default function CreateProduct({ shop_slug }: ShopProps) {
   const [toast, setToast] = useState<string | boolean>("");
   const { push, query } = useRouter();
   const [loading, setLoading] = useState(false);
-  const [images, setImages] = useState<string[]>([]);
+  const [images, setImages] = useState<string[]>([
+    "https://cdn.discordapp.com/attachments/941363423818678353/1072071804849508373/image.png",
+  ]);
   const [categoryIdSelected, setCategoryIdSelected] = useState<string>("none");
   const {
     register,
@@ -89,6 +92,11 @@ export default function CreateProduct({ shop_slug }: ShopProps) {
     }
     setLoading(false);
   };
+
+  function handleDeleteImage(url: string) {
+    const removedImage = images.filter((image) => image !== url);
+    setImages(removedImage);
+  }
 
   return (
     <>
@@ -173,7 +181,10 @@ export default function CreateProduct({ shop_slug }: ShopProps) {
                           backgroundSize: "cover",
                           backgroundPosition: "center",
                         }}
-                      />
+                        onClick={() => handleDeleteImage(image)}
+                      >
+                        <X size={32} color="#FF5757" />
+                      </CreatedImage>
                     ))}
                 </UploadFile>
               </section>

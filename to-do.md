@@ -14,7 +14,8 @@
 # Dashboard/Product
 [x] Find Products
 [ ] Edit Products
-[ ] Delete Image and Update
+[x] Delete Image
+[ ] Update Image
 
 # Dashboard/Config
 [ ] Theme

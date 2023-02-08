@@ -4,6 +4,8 @@ import { scrollStyled } from "@src/styles/global.css";
 
 import { Table as TableT } from "react-super-responsive-table";
 
+import { X } from "phosphor-react";
+
 export const Container = styled("main", {
   flex: 1,
   display: "flex",
@@ -165,10 +167,38 @@ export const InputFile = styled("section", {
 });
 
 export const CreatedImage = styled("data", {
+  position: "relative",
+  overflow: "hidden",
+
   width: "92px",
   height: "92px",
   border: "1px solid $gray-700",
   borderRadius: "5px",
+
+  svg: {
+    opacity: 0,
+  },
+
+  "&:hover": {
+    svg: {
+      position: "absolute",
+      opacity: 1,
+      zIndex: 1,
+
+      left: "30%",
+      top: "30%",
+    },
+
+    "&::before": {
+      content: " ",
+      position: "absolute",
+      width: "100%",
+      height: "100%",
+      background: "rgba(26, 28, 34, 0.85)",
+      top: "0px",
+      left: "0px",
+    },
+  },
 });
 
 export const Table = styled(TableT, {
