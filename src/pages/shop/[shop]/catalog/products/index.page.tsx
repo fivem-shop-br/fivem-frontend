@@ -44,6 +44,7 @@ export interface ProductsProps {
 }
 
 export default function Products({ shop_slug }: ShopProps) {
+  const [search, setSearch] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [categoryIdSelected, setCategoryIdSelected] = useState<string>("none");
   const router = useRouter();
@@ -56,6 +57,22 @@ export default function Products({ shop_slug }: ShopProps) {
       return getProducts(categoryIdSelected);
     }
   );
+
+  const dataInSearch =
+    data && search
+      ? data.filter((index) =>
+          index.name
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .toLocaleLowerCase()
+            .includes(
+              search
+                .toLocaleLowerCase()
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+            )
+        )
+      : data;
 
   async function handleDelete(id: string) {
     setLoading(true);
@@ -75,6 +92,10 @@ export default function Products({ shop_slug }: ShopProps) {
     if (selectCategory) setCategoryIdSelected(selectCategory);
     refetch();
   }, [categoryIdSelected]);
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+  };
 
   return (
     <SideBar path="/catalog" shopId={shop_slug}>
@@ -106,7 +127,11 @@ export default function Products({ shop_slug }: ShopProps) {
               <Input.Icon position="left">
                 <MagnifyingGlass size={22} />
               </Input.Icon>
-              <Input.Input type="text" placeholder="Pesquisar por produto..." />
+              <Input.Input
+                type="text"
+                placeholder="Pesquisar por produto..."
+                onChange={handleSearch}
+              />
             </Input.Root>
           </Search>
           <Area table={!isLoading && data && data.length > 0}>
@@ -132,69 +157,70 @@ export default function Products({ shop_slug }: ShopProps) {
                       </Tr>
                     </Thead>
                     <Tbody>
-                      {data.map((index, key) => (
-                        <Tr key={key}>
-                          <Td>
-                            <TableImage
-                              css={{
-                                backgroundImage: `url(${index.image[0]})`,
-                              }}
-                            />
-                          </Td>
-                          <Td>{index.name}</Td>
-                          <Td>
-                            {index.price.toLocaleString("pt-br", {
-                              style: "currency",
-                              currency: "BRL",
-                            })}
-                          </Td>
-                          <Td>
-                            {format(new Date(index.createdAt), `dd/MM/yyyy`)}
-                          </Td>
-                          <Td>
-                            {format(
-                              new Date(index.updatedAt),
-                              `dd/MM/yyyy 'de' HH:mm`
-                            )}
-                          </Td>
-                          <Td>
-                            <Tooltip content="Editar">
-                              {loading ? (
-                                <CircleNotch
-                                  size={20}
-                                  className="icons loading-animation"
-                                />
-                              ) : (
-                                <PencilSimple
-                                  size={20}
-                                  color="#94FF92"
-                                  className="icons"
-                                />
+                      {dataInSearch &&
+                        dataInSearch.map((index, key) => (
+                          <Tr key={key}>
+                            <Td>
+                              <TableImage
+                                css={{
+                                  backgroundImage: `url(${index.image[0]})`,
+                                }}
+                              />
+                            </Td>
+                            <Td>{index.name}</Td>
+                            <Td>
+                              {index.price.toLocaleString("pt-br", {
+                                style: "currency",
+                                currency: "BRL",
+                              })}
+                            </Td>
+                            <Td>
+                              {format(new Date(index.createdAt), `dd/MM/yyyy`)}
+                            </Td>
+                            <Td>
+                              {format(
+                                new Date(index.updatedAt),
+                                `dd/MM/yyyy 'de' HH:mm`
                               )}
-                            </Tooltip>
-                            <Tooltip
-                              content="Deletar"
-                              backgroundColor="#ff5448"
-                            >
-                              {loading ? (
-                                <CircleNotch
-                                  size={20}
-                                  className="icons loading-animation"
-                                />
-                              ) : (
-                                <Trash
-                                  size={20}
-                                  color="#ff5448"
-                                  className="icons"
-                                  onClick={() =>
-                                    !loading && handleDelete(index.id)
-                                  }
-                                />
-                              )}
-                            </Tooltip>
-                          </Td>
-                        </Tr>
-                      ))}
+                            </Td>
+                            <Td>
+                              <Tooltip content="Editar">
+                                {loading ? (
+                                  <CircleNotch
+                                    size={20}
+                                    className="icons loading-animation"
+                                  />
+                                ) : (
+                                  <PencilSimple
+                                    size={20}
+                                    color="#94FF92"
+                                    className="icons"
+                                  />
+                                )}
+                              </Tooltip>
+                              <Tooltip
+                                content="Deletar"
+                                backgroundColor="#ff5448"
+                              >
+                                {loading ? (
+                                  <CircleNotch
+                                    size={20}
+                                    className="icons loading-animation"
+                                  />
+                                ) : (
+                                  <Trash
+                                    size={20}
+                                    color="#ff5448"
+                                    className="icons"
+                                    onClick={() =>
+                                      !loading && handleDelete(index.id)
+                                    }
+                                  />
+                                )}
+                              </Tooltip>
+                            </Td>
+                          </Tr>
+                        ))}
                     </Tbody>
                   </Table>
                 ) : (
