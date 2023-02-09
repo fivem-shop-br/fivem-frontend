@@ -42,9 +42,7 @@ export default function CreateProduct({ shop_slug }: ShopProps) {
   const [toast, setToast] = useState<string | boolean>("");
   const { push, query } = useRouter();
   const [loading, setLoading] = useState(false);
-  const [images, setImages] = useState<string[]>([
-    "https://cdn.discordapp.com/attachments/941363423818678353/1072071804849508373/image.png",
-  ]);
+  const [images, setImages] = useState<string[]>([]);
   const [categoryIdSelected, setCategoryIdSelected] = useState<string>("none");
   const {
     register,
@@ -90,6 +88,8 @@ export default function CreateProduct({ shop_slug }: ShopProps) {
     } catch (err) {
       setToast(catchError(err));
     }
+
+    target.files = null;
     setLoading(false);
   };
 
@@ -153,7 +153,10 @@ export default function CreateProduct({ shop_slug }: ShopProps) {
                       <input
                         type="file"
                         id="uploadFile"
+                        accept="image/*"
                         onChange={handleImage}
+                        // @ts-ignore
+                        onClick={(e) => (e.target.value = null)}
                       />
                       <label htmlFor="uploadFile">
                         {loading ? (
@@ -174,8 +177,9 @@ export default function CreateProduct({ shop_slug }: ShopProps) {
                     </div>
                   </InputFile>
                   {images &&
-                    images.map((image) => (
+                    images.map((image, key) => (
                       <CreatedImage
+                        key={key}
                         css={{
                           background: `url(${image})`,
                           backgroundSize: "cover",

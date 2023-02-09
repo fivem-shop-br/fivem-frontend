@@ -247,6 +247,9 @@ export const TableImage = styled("div", {
   height: "50px",
   background: "#2D3439",
 
+  borderRadius: "5px",
+  overflow: "hidden",
+
   backgroundSize: "cover",
   backgroundPosition: "center",
 });
