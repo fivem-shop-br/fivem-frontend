@@ -1,6 +1,7 @@
 # Erros
 [ ] Popover in mobile, bug on navigation.
 [ ] Dialog set overflow hidden.
+[ ] Overflow in dashboard (Create product).
 
 # Features
 [ ] Speculate image in slide home.
