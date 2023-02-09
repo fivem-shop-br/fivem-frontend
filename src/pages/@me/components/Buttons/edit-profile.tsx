@@ -116,6 +116,7 @@ export function EditProfile() {
                 <input
                   type="file"
                   id="uploadFile"
+                  accept="image/*"
                   onChange={handleImage}
                   multiple
                 />
