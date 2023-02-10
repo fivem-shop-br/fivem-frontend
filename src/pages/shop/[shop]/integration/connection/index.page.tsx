@@ -47,21 +47,6 @@ export default function Commands({ shop_slug }: ShopProps) {
               </Input.Root>
             </PlataformContent>
           </Accordion.Item>
-
-          <Accordion.Item value="discord">
-            <PlataformTrigger asChild>
-              <div>
-                <ul>
-                  <Image src={Discord} alt="Discord Plataforma" />
-                  <span>Discord</span>
-                </ul>
-                <CaretUp size={32} className="CaretUp" />
-              </div>
-            </PlataformTrigger>
-            <PlataformContent>
-              <span>Token script</span>
-            </PlataformContent>
-          </Accordion.Item>
         </Plataform>
       </Container>
     </SideBar>

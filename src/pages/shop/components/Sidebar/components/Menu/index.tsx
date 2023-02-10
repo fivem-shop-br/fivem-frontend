@@ -1,3 +1,4 @@
+import { keyframes, styled } from "@fivem-shop/react";
 import * as Accordion from "@radix-ui/react-accordion";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -58,7 +59,7 @@ export function Menu({ defaultPath: valueMenu }: MenuProps) {
                     </NavItem>
                   </Accordion.Trigger>
                 </Accordion.Header>
-                <Accordion.Content className="content">
+                <AccordionContent className="content">
                   {accordion &&
                     accordion.map(({ Icon, name, path }, key) => (
                       <Link
@@ -83,7 +84,7 @@ export function Menu({ defaultPath: valueMenu }: MenuProps) {
                         </NavItem>
                       </Link>
                     ))}
-                </Accordion.Content>
+                </AccordionContent>
               </Accordion.Item>
             )
         )}
@@ -98,3 +99,24 @@ export function Menu({ defaultPath: valueMenu }: MenuProps) {
     </MenuS>
   );
 }
+
+const slideDown = keyframes({
+  from: { height: 0 },
+  to: { height: "var(--radix-accordion-content-height)" },
+});
+
+const slideUp = keyframes({
+  from: { height: "var(--radix-accordion-content-height)" },
+  to: { height: 0 },
+});
+
+const AccordionContent = styled(Accordion.Content, {
+  overflow: "hidden",
+
+  '&[data-state="open"]': {
+    animation: `${slideDown} 300ms cubic-bezier(0.87, 0, 0.13, 1)`,
+  },
+  '&[data-state="closed"]': {
+    animation: `${slideUp} 300ms cubic-bezier(0.87, 0, 0.13, 1)`,
+  },
+});

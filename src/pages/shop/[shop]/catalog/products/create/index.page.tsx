@@ -18,6 +18,7 @@ import {
   CurrencyDollarSimple,
   FileImage,
   Package,
+  X,
 } from "phosphor-react";
 import { SelectCategory } from "../components/select-category";
 import { useState } from "react";
@@ -87,8 +88,15 @@ export default function CreateProduct({ shop_slug }: ShopProps) {
     } catch (err) {
       setToast(catchError(err));
     }
+
+    target.files = null;
     setLoading(false);
   };
+
+  function handleDeleteImage(url: string) {
+    const removedImage = images.filter((image) => image !== url);
+    setImages(removedImage);
+  }
 
   return (
     <>
@@ -145,7 +153,10 @@ export default function CreateProduct({ shop_slug }: ShopProps) {
                       <input
                         type="file"
                         id="uploadFile"
+                        accept="image/*"
                         onChange={handleImage}
+                        // @ts-ignore
+                        onClick={(e) => (e.target.value = null)}
                       />
                       <label htmlFor="uploadFile">
                         {loading ? (
@@ -166,14 +177,18 @@ export default function CreateProduct({ shop_slug }: ShopProps) {
                     </div>
                   </InputFile>
                   {images &&
-                    images.map((image) => (
+                    images.map((image, key) => (
                       <CreatedImage
+                        key={key}
                         css={{
                           background: `url(${image})`,
                           backgroundSize: "cover",
                           backgroundPosition: "center",
                         }}
-                      />
+                        onClick={() => handleDeleteImage(image)}
+                      >
+                        <X size={32} color="#FF5757" />
+                      </CreatedImage>
                     ))}
                 </UploadFile>
               </section>
