@@ -9,7 +9,7 @@
 # TO-DO
 [x] Change Profile (Name, Picture)- @Me
 [ ] Change Password - @Me
-[ ] Verify Email - @Me
+[ ] Verify Email (Before Login or not signIn) - @Me
 [ ] Delete Account - @Me
 
 # Dashboard/Product
