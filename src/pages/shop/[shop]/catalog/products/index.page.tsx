@@ -32,6 +32,7 @@ import {
 import { SelectCategory } from "./components/select-category";
 import { api } from "@src/services/api-client";
 import { Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
+import { NextSeo } from "next-seo";
 
 export interface ProductsProps {
   id: string;
@@ -98,160 +99,169 @@ export default function Products({ shop_slug }: ShopProps) {
   };
 
   return (
-    <SideBar path="/catalog" shopId={shop_slug}>
-      <Container>
-        <Header>
-          <h1>Todos Produtos</h1>
+    <>
+      <NextSeo title="Produtos - Fivem Shop" />
+      <SideBar path="/catalog" shopId={shop_slug}>
+        <Container>
+          <Header>
+            <h1>Todos Produtos</h1>
 
-          <Button
-            mode="primary"
-            css={{ ...buttonCss, textDecoration: "none" }}
-            asChild
-          >
-            <Link
-              href={`${router.asPath}/create?redirect_url=${router.asPath}`}
+            <Button
+              mode="primary"
+              css={{ ...buttonCss, textDecoration: "none" }}
+              asChild
             >
-              <Plus weight="bold" size={22} />
-              Adicionar Produto
-            </Link>
-          </Button>
-        </Header>
-        <SearchContainer>
-          <Search>
-            <SelectCategory
-              shop_slug={shop_slug}
-              setCategoryIdSelected={setCategoryIdSelected}
-              categoryIdSelected={categoryIdSelected}
-            />
-            <Input.Root>
-              <Input.Icon position="left">
-                <MagnifyingGlass size={22} />
-              </Input.Icon>
-              <Input.Input
-                type="text"
-                placeholder="Pesquisar por produto..."
-                onChange={handleSearch}
+              <Link
+                href={`${router.asPath}/create?redirect_url=${router.asPath}`}
+              >
+                <Plus weight="bold" size={22} />
+                Adicionar Produto
+              </Link>
+            </Button>
+          </Header>
+          <SearchContainer>
+            <Search>
+              <SelectCategory
+                shop_slug={shop_slug}
+                setCategoryIdSelected={setCategoryIdSelected}
+                categoryIdSelected={categoryIdSelected}
               />
-            </Input.Root>
-          </Search>
-          <Area table={!isLoading && data && data.length > 0}>
-            {isLoading ? (
-              <div>
-                <CircleNotch size={50} className="loading-animation" />
-                <ul>
-                  <h2>Carregando...</h2>
-                </ul>
-              </div>
-            ) : (
-              <>
-                {data && data.length ? (
-                  <Table>
-                    <Thead>
-                      <Tr>
-                        <Th>Foto</Th>
-                        <Th>Nome</Th>
-                        <Th>Preço</Th>
-                        <Th>Criando em</Th>
-                        <Th>Ultima edição</Th>
-                        <Th></Th>
-                      </Tr>
-                    </Thead>
-                    <Tbody>
-                      {dataInSearch &&
-                        dataInSearch.map((index, key) => (
-                          <Tr key={key}>
-                            <Td>
-                              <TableImage
-                                css={{
-                                  backgroundImage: `url(${index.image[0]})`,
-                                }}
-                              />
-                            </Td>
-                            <Td>{index.name}</Td>
-                            <Td>
-                              {index.price.toLocaleString("pt-br", {
-                                style: "currency",
-                                currency: "BRL",
-                              })}
-                            </Td>
-                            <Td>
-                              {format(new Date(index.createdAt), `dd/MM/yyyy`)}
-                            </Td>
-                            <Td>
-                              {format(
-                                new Date(index.updatedAt),
-                                `dd/MM/yyyy 'de' HH:mm`
-                              )}
-                            </Td>
-                            <Td>
-                              <Tooltip content="Editar">
-                                {loading ? (
-                                  <CircleNotch
-                                    size={20}
-                                    className="icons loading-animation"
-                                  />
-                                ) : (
-                                  <PencilSimple
-                                    size={20}
-                                    color="#94FF92"
-                                    className="icons"
-                                  />
+              <Input.Root>
+                <Input.Icon position="left">
+                  <MagnifyingGlass size={22} />
+                </Input.Icon>
+                <Input.Input
+                  type="text"
+                  placeholder="Pesquisar por produto..."
+                  onChange={handleSearch}
+                />
+              </Input.Root>
+            </Search>
+            <Area table={!isLoading && data && data.length > 0}>
+              {isLoading ? (
+                <div>
+                  <CircleNotch size={50} className="loading-animation" />
+                  <ul>
+                    <h2>Carregando...</h2>
+                  </ul>
+                </div>
+              ) : (
+                <>
+                  {data && data.length ? (
+                    <Table>
+                      <Thead>
+                        <Tr>
+                          <Th>Foto</Th>
+                          <Th>Nome</Th>
+                          <Th>Preço</Th>
+                          <Th>Criando em</Th>
+                          <Th>Ultima edição</Th>
+                          <Th></Th>
+                        </Tr>
+                      </Thead>
+                      <Tbody>
+                        {dataInSearch &&
+                          dataInSearch.map((index, key) => (
+                            <Tr key={key}>
+                              <Td>
+                                <TableImage
+                                  css={{
+                                    backgroundImage: `url(${index.image[0]})`,
+                                  }}
+                                />
+                              </Td>
+                              <Td>{index.name}</Td>
+                              <Td>
+                                {index.price.toLocaleString("pt-br", {
+                                  style: "currency",
+                                  currency: "BRL",
+                                })}
+                              </Td>
+                              <Td>
+                                {format(
+                                  new Date(index.createdAt),
+                                  `dd/MM/yyyy`
                                 )}
-                              </Tooltip>
-                              <Tooltip
-                                content="Deletar"
-                                backgroundColor="#ff5448"
-                              >
-                                {loading ? (
-                                  <CircleNotch
-                                    size={20}
-                                    className="icons loading-animation"
-                                  />
-                                ) : (
-                                  <Trash
-                                    size={20}
-                                    color="#ff5448"
-                                    className="icons"
-                                    onClick={() =>
-                                      !loading && handleDelete(index.id)
-                                    }
-                                  />
+                              </Td>
+                              <Td>
+                                {format(
+                                  new Date(index.updatedAt),
+                                  `dd/MM/yyyy 'de' HH:mm`
                                 )}
-                              </Tooltip>
-                            </Td>
-                          </Tr>
-                        ))}
-                    </Tbody>
-                  </Table>
-                ) : (
-                  <>
-                    {categoryIdSelected !== "none" ? (
-                      <div>
-                        <Package size={50} />
-                        <ul>
-                          <h2>Você ainda não tem produtos</h2>
-                          <span>
-                            Você pode adicionar itens, e todas aparecerão aqui!
-                          </span>
-                        </ul>
-                      </div>
-                    ) : (
-                      <div>
-                        <Tag size={50} />
-                        <ul>
-                          <h2>Selecione uma categoria</h2>
-                          <span>Você ainda não selecionou uma categoria.</span>
-                        </ul>
-                      </div>
-                    )}
-                  </>
-                )}
-              </>
-            )}
-          </Area>
-        </SearchContainer>
-      </Container>
-    </SideBar>
+                              </Td>
+                              <Td>
+                                <Tooltip content="Editar">
+                                  {loading ? (
+                                    <CircleNotch
+                                      size={20}
+                                      className="icons loading-animation"
+                                    />
+                                  ) : (
+                                    <PencilSimple
+                                      size={20}
+                                      color="#94FF92"
+                                      className="icons"
+                                    />
+                                  )}
+                                </Tooltip>
+                                <Tooltip
+                                  content="Deletar"
+                                  backgroundColor="#ff5448"
+                                >
+                                  {loading ? (
+                                    <CircleNotch
+                                      size={20}
+                                      className="icons loading-animation"
+                                    />
+                                  ) : (
+                                    <Trash
+                                      size={20}
+                                      color="#ff5448"
+                                      className="icons"
+                                      onClick={() =>
+                                        !loading && handleDelete(index.id)
+                                      }
+                                    />
+                                  )}
+                                </Tooltip>
+                              </Td>
+                            </Tr>
+                          ))}
+                      </Tbody>
+                    </Table>
+                  ) : (
+                    <>
+                      {categoryIdSelected !== "none" ? (
+                        <div>
+                          <Package size={50} />
+                          <ul>
+                            <h2>Você ainda não tem produtos</h2>
+                            <span>
+                              Você pode adicionar itens, e todas aparecerão
+                              aqui!
+                            </span>
+                          </ul>
+                        </div>
+                      ) : (
+                        <div>
+                          <Tag size={50} />
+                          <ul>
+                            <h2>Selecione uma categoria</h2>
+                            <span>
+                              Você ainda não selecionou uma categoria.
+                            </span>
+                          </ul>
+                        </div>
+                      )}
+                    </>
+                  )}
+                </>
+              )}
+            </Area>
+          </SearchContainer>
+        </Container>
+      </SideBar>
+    </>
   );
 }
 
