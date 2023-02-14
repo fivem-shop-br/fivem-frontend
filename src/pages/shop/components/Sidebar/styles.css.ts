@@ -137,6 +137,9 @@ export const Children = styled("div", {
   padding: "25px",
   gap: "35px",
 
+  overflow: "auto",
+  ...scrollStyled,
+
   variants: {
     overflow: {
       true: {

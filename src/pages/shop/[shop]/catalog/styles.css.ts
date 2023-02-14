@@ -129,14 +129,13 @@ export const UploadFile = styled("div", {
   flexDirection: "row",
 
   gap: "10px",
+  margin: "10px 0",
 
   alignItems: "center",
 });
 
 export const InputFile = styled("section", {
-  maxWidth: "92px",
-  flex: "none",
-
+  flex: "none !important",
   position: "relative",
 
   input: {
@@ -147,7 +146,7 @@ export const InputFile = styled("section", {
   "label:nth-child(2)": {
     background: "$gray-700",
     border: "1px solid $gray-700",
-    padding: "13px 30px",
+    padding: "20px 5px",
 
     borderRadius: "5px",
 
