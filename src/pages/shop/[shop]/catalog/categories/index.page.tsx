@@ -18,6 +18,7 @@ import { Area, Header, Table } from "../styles.css";
 import { Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
 import { catchError } from "@src/utils/process-error";
 import { Toast } from "@src/components/Toast";
+import { NextSeo } from "next-seo";
 
 export interface CategorieProps {
   id: string;
@@ -62,6 +63,7 @@ export default function Categories({ shop_slug }: ShopProps) {
 
   return (
     <>
+      <NextSeo title="Categorias - Fivem Shop" />
       <Toast setOpen={setToast} open={toast} />
       <SideBar path="/catalog" shopId={shop_slug}>
         <Container>
