@@ -1,5 +1,6 @@
 import { SideBar } from "@src/pages/shop/components/Sidebar";
 import { GetServerSideProps } from "next";
+import { NextSeo } from "next-seo";
 import { useState } from "react";
 import { io } from "socket.io-client";
 import { Header } from "../../catalog/styles.css";
@@ -40,38 +41,41 @@ export default function Commands({ shop_slug }: ShopProps) {
   };
 
   return (
-    <SideBar path="/integration" shopId={shop_slug}>
-      <Container>
-        <Header>
-          <h1>Executar Comandos</h1>
-        </Header>
-        <Terminal>
-          <header>
-            <div />
-            <div />
-            <div />
-          </header>
+    <>
+      <NextSeo title="Comandos - Fivem Shop" />
+      <SideBar path="/integration" shopId={shop_slug}>
+        <Container>
+          <Header>
+            <h1>Executar Comandos</h1>
+          </Header>
+          <Terminal>
+            <header>
+              <div />
+              <div />
+              <div />
+            </header>
 
-          <section>
-            {commands &&
-              commands.map(({ command }, key) => (
-                <code key={key}>
-                  <span>[fivem-shop] {">"}</span> <ul>{command}</ul>
-                </code>
-              ))}
-          </section>
+            <section>
+              {commands &&
+                commands.map(({ command }, key) => (
+                  <code key={key}>
+                    <span>[fivem-shop] {">"}</span> <ul>{command}</ul>
+                  </code>
+                ))}
+            </section>
 
-          <data>
-            <span id="path">{">"}</span>
-            <input
-              onKeyDown={handleCommands}
-              onChange={handleCommand}
-              value={command}
-            />
-          </data>
-        </Terminal>
-      </Container>
-    </SideBar>
+            <data>
+              <span id="path">{">"}</span>
+              <input
+                onKeyDown={handleCommands}
+                onChange={handleCommand}
+                value={command}
+              />
+            </data>
+          </Terminal>
+        </Container>
+      </SideBar>
+    </>
   );
 }
 
