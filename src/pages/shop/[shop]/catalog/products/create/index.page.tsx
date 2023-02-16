@@ -106,7 +106,7 @@ export default function CreateProduct({ shop_slug }: ShopProps) {
           <Header>
             <h1>Criar Produto</h1>
           </Header>
-          <Area onSubmit={handleSubmit(submitEvent)} overflow>
+          <form onSubmit={handleSubmit(submitEvent)}>
             <Inputs>
               <section>
                 <label>Categoria</label>
@@ -196,7 +196,7 @@ export default function CreateProduct({ shop_slug }: ShopProps) {
             <Button mode="primary" disabled={categoryIdSelected === "none"}>
               Finalizar Produto
             </Button>
-          </Area>
+          </form>
         </Container>
       </SideBar>
     </>
