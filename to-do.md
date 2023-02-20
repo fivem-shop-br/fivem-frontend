@@ -32,7 +32,7 @@
 [ ] Create Signature
 
 # New Shop
-[ ] Find Name exist?
+[x] Find Name exist?
 [ ] Payment Methods
 [ ] Finish Payment
 [ ] Ckeckout Payment
