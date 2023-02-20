@@ -1,5 +1,6 @@
 import { styled } from "@fivem-shop/react";
 import { responsived } from "@src/styles/global.css";
+import Image from "next/image";
 
 export const Container = styled("div", {
   maxWidth: "100%",
@@ -54,6 +55,8 @@ export const ContainerSingular = styled("div", {
     margin: "auto 0 0",
     objectFit: "cover",
     borderRadius: "5px",
+
+    cursor: "pointer",
   },
 });
 
@@ -68,4 +71,15 @@ export const Box = styled("div", {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+});
+
+export const DialogSelectImage = styled(Image, {
+  ...responsived,
+
+  width: "100%",
+  height: "auto",
+
+  border: "1px solid $blue-700",
+  borderRadius: "5px",
+  outline: "none",
 });

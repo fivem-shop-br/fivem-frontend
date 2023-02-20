@@ -1,10 +1,9 @@
 # Erros
 [ ] Popover in mobile, bug on navigation.
-[ ] Dialog set overflow hidden.
 [x] Overflow in dashboard (Create product).
 
 # Features
-[ ] Speculate image in slide home.
+[x] Speculate image in slide home.
 
 # TO-DO
 [x] Change Profile (Name, Picture)- @Me
@@ -16,7 +15,7 @@
 [x] Find Products
 [ ] Edit Products
 [x] Delete Image
-[ ] Update Image
+[x] Update Image
 
 # Dashboard/Config
 [ ] Theme

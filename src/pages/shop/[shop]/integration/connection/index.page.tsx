@@ -37,10 +37,7 @@ export default function Commands({ shop_slug }: ShopProps) {
               <PlataformContent>
                 <span>Token script</span>
                 <Input.Root>
-                  <Input.Input
-                    type="text"
-                    value="2390I4R2398JI9WENFJINDFJINSDJIFNSDIJFJ8UHR78U34HRU43HU"
-                  />
+                  <Input.Input type="text" value="TOKEN-TEST" />
                   <Input.Icon position="right">
                     <Tooltip content="Gerar Token" backgroundColor="$blue-700">
                       <ArrowsClockwise size={22} />
