@@ -1,5 +1,10 @@
 import Image from "next/image";
-import { Box, ContainerSingular } from "./index.css";
+import * as Dialog from "@radix-ui/react-dialog";
+import { Box, ContainerSingular, DialogSelectImage } from "./index.css";
+import {
+  DialogContent,
+  DialogOverlay,
+} from "@src/pages/@me/components/Buttons/styled.css";
 
 interface SlideProps {
   title: string;
@@ -21,13 +26,29 @@ export function SlideSingular(props: SlideProps) {
       </div>
       <p>{props.description}</p>
 
-      <Image
-        src={props.image}
-        width="1920"
-        height="1080"
-        alt={props.title}
-        quality={100}
-      />
+      <Dialog.Root>
+        <Dialog.Trigger asChild>
+          <Image
+            src={props.image}
+            width="1920"
+            height="1080"
+            alt={props.title}
+            quality={100}
+          />
+        </Dialog.Trigger>
+        <Dialog.Portal>
+          <DialogOverlay />
+          <DialogContent asChild>
+            <DialogSelectImage
+              src={props.image}
+              width="1920"
+              height="1080"
+              alt={props.title}
+              quality={100}
+            />
+          </DialogContent>
+        </Dialog.Portal>
+      </Dialog.Root>
     </ContainerSingular>
   );
 }

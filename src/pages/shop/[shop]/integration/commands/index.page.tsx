@@ -23,7 +23,7 @@ interface messageProps {
 }
 
 export default function Commands({ shop_slug }: ShopProps) {
-  const socket = connectedWs("1");
+  const socket = connectedWs("TOKEN-TEST");
   const [commands, setCommands] = useState<messageProps[]>([]);
   const [command, setCommand] = useState("");
 
