@@ -1,10 +1,10 @@
-import { Router } from "next/router";
 import type { AppProps } from "next/app";
+import { Router } from "next/router";
 import { globalStyles } from "@src/styles/global.css";
 import { SkeletonTheme } from "react-loading-skeleton";
 
-import { AuthProvider } from "@src/contexts/auth-context";
 import { QueryClientProvider } from "react-query";
+import { AuthProvider } from "@src/contexts/auth-context";
 import { queryClient } from "@src/services/query-client";
 
 import { start, done } from "nprogress";

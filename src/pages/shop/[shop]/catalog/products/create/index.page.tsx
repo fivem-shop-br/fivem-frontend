@@ -3,7 +3,6 @@ import { GetServerSideProps } from "next";
 import { ShopProps } from "../../../index.page";
 import { Container } from "../../../styled.css";
 import {
-  Area,
   CreatedImage,
   Header,
   InputFile,
