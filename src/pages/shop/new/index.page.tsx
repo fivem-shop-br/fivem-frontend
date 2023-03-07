@@ -3,12 +3,16 @@ import { Button } from "@fivem-shop/react";
 import { Layout } from "@src/components/Layout";
 import { NextSeo } from "next-seo";
 import { ShoppingCartSimple } from "phosphor-react";
+import { useState } from "react";
 import { Container } from "./styled.css";
 
 export default function New() {
+  const [name, setName] = useState("");
+  const [subDomain, setsubDomain] = useState("");
+
   return (
     <Layout>
-      <NextSeo title="Criar uma nova Loja - Fivem Shop" />
+      <NextSeo title="Nova Loja - Fivem Shop" />
       <Container>
         <ul>
           <span>Me conte mais sobre sua Loja</span>
@@ -29,6 +33,20 @@ export default function New() {
                 placeholder="Digite nome da sua loja"
                 autoFocus
               />
+            </Input.Root>
+          </div>
+          <div>
+            <label>
+              Escolha um subdomínio <span>*</span>
+            </label>
+            <Input.Root>
+              <Input.Icon position="left">
+                <span>https://</span>
+              </Input.Icon>
+              <Input.Input type="text" placeholder="exemplo-nome" autoFocus />
+              <Input.Icon position="right">
+                <span>.fivem.com.br</span>
+              </Input.Icon>
             </Input.Root>
           </div>
 
