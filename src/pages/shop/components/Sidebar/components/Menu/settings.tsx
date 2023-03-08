@@ -106,7 +106,7 @@ export const menuItems = [
         Icon: (props: IconProps) => <ImageIcon {...props} />,
       },
       {
-        path: "/coupons",
+        path: "/general",
         name: "Geral",
         Icon: (props: IconProps) => <Folder {...props} />,
       },
