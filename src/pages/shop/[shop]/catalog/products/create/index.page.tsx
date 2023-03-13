@@ -23,7 +23,7 @@ import { SelectCategory } from "../components/select-category";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { api } from "@src/services/api-client";
+import { api, apiShop } from "@src/services/api-client";
 import { catchError } from "@src/utils/process-error";
 import { useRouter } from "next/router";
 import { Toast } from "@src/components/Toast";
@@ -57,7 +57,7 @@ export default function CreateProduct({ shop_slug }: ShopProps) {
 
     try {
       setLoading(true);
-      await api.post("/product", {
+      await apiShop(shop_slug).post("/product", {
         categoryId: categoryIdSelected,
         name,
         price,
