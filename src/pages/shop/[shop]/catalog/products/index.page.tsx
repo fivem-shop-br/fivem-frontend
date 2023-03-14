@@ -30,13 +30,13 @@ import {
   TableImage,
 } from "../styles.css";
 import { SelectCategory } from "./components/select-category";
-import { api } from "@src/services/api-client";
+import { api, apiShop } from "@src/services/api-client";
 import { Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
 import { NextSeo } from "next-seo";
 
 export interface ProductsProps {
   id: string;
-  category_id: string;
+  categoryId: string;
   name: string;
   image: string[];
   price: number;
@@ -80,12 +80,18 @@ export default function Products({ shop_slug }: ShopProps) {
     const deleted = data && data.filter((index) => index.id !== id);
 
     try {
-      await api.delete("product/" + id);
+      await apiShop(shop_slug).delete("product/" + id);
       queryClient.setQueryData(`products ${shop_slug}`, deleted);
     } catch (err) {
     } finally {
       setLoading(false);
     }
+  }
+
+  function handleEdit(id: string, name: string) {
+    router.push(
+      `${router.asPath}/${name}?redirect_url=${router.asPath}&id=${id}`
+    );
   }
 
   useEffect(() => {
@@ -201,6 +207,9 @@ export default function Products({ shop_slug }: ShopProps) {
                                       size={20}
                                       color="#94FF92"
                                       className="icons"
+                                      onClick={() =>
+                                        handleEdit(index.id, index.name)
+                                      }
                                     />
                                   )}
                                 </Tooltip>
