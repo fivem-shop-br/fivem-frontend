@@ -16,7 +16,7 @@ import {
 
 export interface SideBarProps {
   children: React.ReactNode;
-  path: string;
+  path?: string;
   shopId: string;
   overflow?: boolean;
 }
