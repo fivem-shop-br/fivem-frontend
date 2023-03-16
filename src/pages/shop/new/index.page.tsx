@@ -43,7 +43,7 @@ export default function New() {
               <Input.Icon position="left">
                 <span>https://</span>
               </Input.Icon>
-              <Input.Input type="text" placeholder="exemplo-nome" autoFocus />
+              <Input.Input type="text" placeholder="exemplo-nome" />
               <Input.Icon position="right">
                 <span>.fivem.com.br</span>
               </Input.Icon>

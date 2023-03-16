@@ -135,6 +135,7 @@ export default function CreateProduct({ shop_slug }: ShopProps) {
                     type="text"
                     placeholder="Nome do produto"
                     {...register("name")}
+                    autoFocus
                   />
                 </Input.Root>
                 <span>{errors && errors.name?.message}</span>

@@ -16,17 +16,12 @@ import {
 
 export interface SideBarProps {
   children: React.ReactNode;
-  path?: string;
+  path: string;
   shopId: string;
   overflow?: boolean;
 }
 
-export function SideBar({
-  overflow,
-  shopId,
-  children,
-  path,
-}: SideBarProps) {
+export function SideBar({ overflow, shopId, children, path }: SideBarProps) {
   const { push } = useRouter();
   const { data, isError } = useQuery<ShopsProps>("shop" + shopId, () => {
     return getShop(shopId);
