@@ -59,11 +59,11 @@ export const menuItems = [
         name: "Pedidos",
         Icon: (props: IconProps) => <ClipboardText {...props} />,
       },
-      {
+      /* {
         path: "/methods",
         name: "Métodos",
         Icon: (props: IconProps) => <CreditCard {...props} />,
-      },
+      }, */
       {
         path: "/signature",
         name: "Assinatura",
